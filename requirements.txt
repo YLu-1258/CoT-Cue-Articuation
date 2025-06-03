@@ -1,3 +1,30 @@
-from datasets import load_dataset
+# Core data analysis dependencies
+pandas>=1.5.0
+numpy>=1.21.0
 
-ds = load_dataset("cais/mmlu", "all")
+# Machine learning and datasets
+datasets>=2.0.0
+
+# Visualization dependencies
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Jupyter notebook dependencies
+jupyter>=1.0.0
+ipykernel>=6.0.0
+notebook>=6.0.0
+
+# HTTP requests for model API
+requests>=2.25.0
+
+# JSON handling (usually included with Python)
+json5>=0.9.0
+
+# Regular expressions (built-in to Python, but listing for clarity)
+# re - built-in module
+
+# Optional: For better progress tracking
+tqdm>=4.60.0
+
+# Optional: For enhanced data manipulation
+openpyxl>=3.0.0  # For Excel file support

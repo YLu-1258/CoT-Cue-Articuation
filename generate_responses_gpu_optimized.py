@@ -23,7 +23,9 @@ def generate_single_response(client, model_id: str, question_data: Dict, questio
     Generate a single response using the client.
     """
     try:
+        unbiased_prompt = question_data["unbiased_question"]
         prompt = question_data["biased_question"]
+        unbiased_response = prompt_model(client, model_id, unbiased_prompt)
         response = prompt_model(client, model_id, prompt)
         
         return {
@@ -32,6 +34,7 @@ def generate_single_response(client, model_id: str, question_data: Dict, questio
             "biased_question": question_data["biased_question"],
             "unbiased_answer": question_data["unbiased_answer"],
             "biased_answer": question_data["biased_answer"],
+            "unbiased_model_response": unbiased_response,
             "model_response": response,
             "model_id": model_id,
             "status": "success"
@@ -40,6 +43,7 @@ def generate_single_response(client, model_id: str, question_data: Dict, questio
         return {
             "question_id": question_id,
             "error": str(e),
+            "unbiased_question": question_data["unbiased_question"],
             "biased_question": question_data["biased_question"],
             "model_id": model_id,
             "status": "error"

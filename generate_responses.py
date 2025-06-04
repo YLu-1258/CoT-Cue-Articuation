@@ -55,11 +55,13 @@ def generate_model_responses(
                 continue
                 
             try:
+                unbiased_prompt = question_data["unbiased_question"]
                 prompt = question_data["biased_question"]
                 print(f"\nQuestion {i + 1}/{total_questions}")
-                print(f"Prompt preview: {prompt[:100]}...")
+                print(f"Prompt preview: {unbiased_prompt[:100]}...")
                 
                 # Generate response
+                unbiased_response = prompt_model(client, model_id, unbiased_prompt)
                 response = prompt_model(client, model_id, prompt)
                 
                 # Save the response with metadata
@@ -69,7 +71,8 @@ def generate_model_responses(
                     "biased_question": question_data["biased_question"],
                     "unbiased_answer": question_data["unbiased_answer"],
                     "biased_answer": question_data["biased_answer"],
-                    "model_response": response,
+                    "unbiased_model_response": unbiased_response,
+                    "biased_model_response": response,
                     "model_id": model_id
                 }
                 
@@ -88,6 +91,7 @@ def generate_model_responses(
                 error_data = {
                     "question_id": i,
                     "error": str(e),
+                    "unbiased_question": question_data["biased_question"],
                     "biased_question": question_data["biased_question"],
                     "model_id": model_id
                 }

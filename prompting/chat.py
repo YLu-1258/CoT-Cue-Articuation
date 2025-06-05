@@ -29,13 +29,11 @@ def prompt_model(client: OpenAI, model_id: str, prompt: str, system_prompt : str
         model=model_id,
         messages=messages
     )
-    print("done")
     return resp.choices[0].message.content
 
 def main():
     # Your prompt
-    prompt = """Could not chdir to home directory /wynton/protected/home/alaa/kechu: Permission denied
--bash: /wynton/protected/home/alaa/kechu/.bash_profile: Permission denied How to fix these issues?"""
+    prompt = "Test test test"
 
     # Build clients for each port
     qwen_client  = make_client(6005)

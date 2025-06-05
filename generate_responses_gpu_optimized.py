@@ -167,6 +167,9 @@ def main():
         if user_choice not in range(1, 3):
             return
         selected_cue = cues[user_choice]
+        
+        # Create output directory if it doesn't exist
+        os.makedirs(OUTPUT_DIRECTORY, exist_ok=True)
         OUTPUT_FILE = OUTPUT_DIRECTORY + selected_cue.value + "_responses.jsonl"
         # Load dataset
         print("Loading {0} dataset...".format(selected_cue.value))

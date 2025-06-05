@@ -17,13 +17,17 @@ def get_served_model_id(client: OpenAI) -> str:
     resp = client.models.list()
     return resp.data[0].id
 
-def prompt_model(client: OpenAI, model_id: str, prompt: str) -> str:
+def prompt_model(client: OpenAI, model_id: str, prompt: str, system_prompt : str=None) -> str:
     """
     Send a chat completion to the given model_id.
     """
+    messages = [{"role": "user", "content": prompt}]
+    if (system_prompt):
+        messages.insert(0, {"role": "system", "content": system_prompt})
+        
     resp = client.chat.completions.create(
         model=model_id,
-        messages=[{"role": "user", "content": prompt}]
+        messages=messages
     )
     print("done")
     return resp.choices[0].message.content

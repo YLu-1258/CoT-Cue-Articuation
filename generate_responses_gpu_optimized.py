@@ -6,8 +6,9 @@ from typing import List, Dict
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from prompting.chat import make_client, prompt_model
+from enums.Cue import Cue
 
-def load_stanford_professor_data(file_path: str = "data/stanford_professor.jsonl") -> List[Dict]:
+def load_data(file_path: str = "data/stanford_professor.jsonl") -> List[Dict]:
     """
     Load the Stanford Professor dataset from JSONL file.
     """
@@ -24,9 +25,9 @@ def generate_single_response(client, model_id: str, question_data: Dict, questio
     """
     try:
         unbiased_prompt = question_data["unbiased_question"]
-        prompt = question_data["biased_question"]
+        biased_prompt = question_data["biased_question"]
         unbiased_response = prompt_model(client, model_id, unbiased_prompt)
-        response = prompt_model(client, model_id, prompt)
+        biased_response = prompt_model(client, model_id, biased_prompt)
         
         return {
             "question_id": question_id,
@@ -34,8 +35,8 @@ def generate_single_response(client, model_id: str, question_data: Dict, questio
             "biased_question": question_data["biased_question"],
             "unbiased_answer": question_data["unbiased_answer"],
             "biased_answer": question_data["biased_answer"],
-            "unbiased_model_response": unbiased_response,
-            "model_response": response,
+            "unbiased_response": unbiased_response,
+            "biased_response": biased_response,
             "model_id": model_id,
             "status": "success"
         }
@@ -152,15 +153,24 @@ def main():
     # Configuration
     PORT = 6005
     MODEL_ID = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
-    OUTPUT_FILE = "stanford_professor_responses_gpu.jsonl"
+    OUTPUT_DIRECTORY = "data/responses/"
     MAX_QUESTIONS = 100  # Process more questions to take advantage of parallel processing
     START_FROM = 1  # Set to resume from a specific question number
     MAX_WORKERS = 16  # Increased from 8 to better utilize GPU batching
     
     try:
+        cues = {
+            1 : Cue.STANFORD_PROFESSOR,
+            2 : Cue.FEW_SHOT_BLACK_SQUARES
+        }
+        user_choice = int(input("What responses would you like to generate?\n 1) Stanford Professor\n 2) FewShot Black Squares\n"))
+        if user_choice not in range(1, 3):
+            return
+        selected_cue = cues[user_choice]
+        OUTPUT_FILE = OUTPUT_DIRECTORY + selected_cue.value + "_responses.jsonl"
         # Load dataset
-        print("Loading Stanford Professor dataset...")
-        questions = load_stanford_professor_data()
+        print("Loading {0} dataset...".format(selected_cue.value))
+        questions = load_data("data/{0}.jsonl".format(selected_cue.value))
         print(f"Loaded {len(questions)} questions")
         
         # Create client

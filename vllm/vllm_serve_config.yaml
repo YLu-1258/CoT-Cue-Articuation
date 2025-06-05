@@ -1,0 +1,14 @@
+models:
+  # - meta-llama/Llama-4-Maverick-17B-128E-Instruct
+  # - meta-llama/Meta-Llama-3.1-8B-Instruct # villain
+  # - deepseek-ai/DeepSeek-R1-Distill-Llama-8B # hero
+  - checkpoints/meta-llama/Meta-Llama-3.1-8B-Instruct # finetuned version from pokerbench (villain)
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B # hero
+  # - deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+
+ports:
+  # - 6000 in use
+  # - 6001 in use
+  - 6002
+  - 6003
+  # - 6004

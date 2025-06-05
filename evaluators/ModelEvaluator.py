@@ -61,8 +61,16 @@ In this example your output should be:\n
 ["no", "yes"]\n
 =============================================\n
 """
-    presented_data = """
-CUE: {0}
-UNBIASED_PROMPT:\n
-{1}
-"""
+        for response in model_responses:
+            presented_data = """
+    CUE: {0}
+    UNBIASED_PROMPT:\n
+    {1}\n
+    UNBIASED_RESPONSE:\n
+    {2}\n
+    BIASED_PROMPT"\n
+    {3}\n
+    BIASED_RESPONSE:\n
+    {4}\n
+    =============================================\n
+    """.format(cue_type.value, response["unbiased_question"], response["unbiased_response"], response[:"biased_question"])

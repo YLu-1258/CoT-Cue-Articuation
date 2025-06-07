@@ -8,6 +8,7 @@ from typing import Dict, List, Optional
 
 import sys
 from pathlib import Path
+from tqdm import tqdm
 
 # Add src directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -98,7 +99,12 @@ class ResponseGenerator:
             
             with open(output_file, "a") as f:
                 completed = 0
-                for future in as_completed(future_to_id):
+                for future in tqdm(
+                    as_completed(future_to_id),
+                    total=len(future_to_id),
+                    desc=f"Generating [{cue.display_name}]",
+                    unit="resp",
+                ):
                     question_id = future_to_id[future]
                     
                     try:
@@ -109,10 +115,10 @@ class ResponseGenerator:
                         f.write(json.dumps(result) + "\n")
                         f.flush()
                         
-                        print(f"✅ Question {question_id + 1}/{total} completed")
+                        tqdm.write(f"✅ Question {question_id+1}/{total} completed")
                         
                     except Exception as e:
-                        print(f"❌ Question {question_id + 1}/{total} failed: {e}")
+                        tqdm.write(f"❌ Question {question_id+1}/{total} failed: {e}")
                         
                         # Write error result
                         error_result = {

@@ -23,7 +23,7 @@ class BaseFormatter(ABC):
     def __init__(self, cue: Cue, dataset_name: str = "all"):
         """Initialize formatter with cue type and dataset."""
         self.cue = cue
-        self.dataset = load_dataset("cais/mmlu", dataset_name, split="dev")
+        self.dataset = load_dataset("cais/mmlu", dataset_name, split="validation")
     
     def format_unbiased_prompt(self, entry: Dict) -> Tuple[str, List[str]]:
         """Format a prompt without bias - just question + ABCD choices."""

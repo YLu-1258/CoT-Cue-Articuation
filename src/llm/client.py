@@ -39,7 +39,7 @@ class LLMClient:
     def prompt(
         self, 
         user_message: str, 
-        system_message: Optional[str] = None,
+        system_prompt: Optional[str] = None,
         temperature: float = 0.0,
         max_tokens: Optional[int] = None
     ) -> str:
@@ -48,7 +48,7 @@ class LLMClient:
         
         Args:
             user_message: The user's prompt
-            system_message: Optional system message
+            system_prompt: Optional system message
             temperature: Sampling temperature (0.0 = deterministic)
             max_tokens: Maximum tokens to generate
             
@@ -57,8 +57,8 @@ class LLMClient:
         """
         messages = []
         
-        if system_message:
-            messages.append({"role": "system", "content": system_message})
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
         
         messages.append({"role": "user", "content": user_message})
         

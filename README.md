@@ -1,7 +1,5 @@
 # CoT Cue Articulation Research
 
-A research framework for evaluating how language models respond to Chain-of-Thought (CoT) cues.
-
 ## Usage
 
 ### 1. Generate Datasets

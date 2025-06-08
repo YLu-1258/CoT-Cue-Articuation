@@ -22,7 +22,7 @@ from enums.cue import Cue
 def main():
     """Evaluate responses for all datasets."""
     parser = argparse.ArgumentParser(description="Evaluate model responses")
-    parser.add_argument("--port", type=int, required=True, help="Evaluator LLM server port")
+    parser.add_argument("--port", type=int, help="Evaluator LLM server port")
     parser.add_argument("--model-id", type=str, help="Specific evaluator model ID to use")
     parser.add_argument("--max-workers", type=int, help="Number of parallel workers")
     parser.add_argument("--cue", type=str, choices=[cue.value for cue in Cue], 
@@ -45,7 +45,7 @@ def main():
     
     # Create model evaluator
     max_workers = args.max_workers if args.max_workers else 8  # Default to 8 if not specified
-    evaluator = ModelEvaluator(client, "data/model_evaluation", max_workers)
+    evaluator = ModelEvaluator(client, f"data/model_evaluation/{args.model_id}", max_workers)
     
     # Evaluate responses
     if args.cue:

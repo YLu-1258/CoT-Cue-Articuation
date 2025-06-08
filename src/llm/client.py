@@ -1,6 +1,7 @@
 """LLM client for interacting with local and remote models."""
 
 from typing import List, Dict, Optional
+import os
 from openai import OpenAI
 
 
@@ -16,7 +17,10 @@ class LLMClient:
             api_key: API key (can be dummy for local servers)
             model_id: Specific model ID to use (will auto-detect if None)
         """
-        self.client = OpenAI(api_key=api_key, base_url=base_url)
+        if "gpt" in model_id:
+            self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        else:
+            self.client = OpenAI(api_key=api_key, base_url=base_url)
         self.model_id = model_id or self._get_model_id()
         self.base_url = base_url
     

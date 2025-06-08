@@ -56,7 +56,7 @@ def main():
             print(f"❌ Dataset not found: {input_file}")
             print("Run 'python scripts/generate_data.py' first")
             sys.exit(1)
-        
+        print(input_file)
         output_file = generator.generate_responses_for_dataset(input_file, cue)
         print(f"\n✅ Responses generated: {output_file}")
     else:

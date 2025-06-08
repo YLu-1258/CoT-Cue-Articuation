@@ -50,12 +50,12 @@ def test_model_response():
         print(f"❌ Unexpected error: {e}")
 
 
-def test_custom_server():
+def test_custom_server(port: int):
     """Test with custom server configuration."""
     print("\n=== Testing Custom Server Configuration ===")
     
     # You can modify these values to test different servers
-    custom_base_url = "http://localhost:6004/v1"  # Change as needed
+    custom_base_url = f"http://localhost:{port}/v1"  # Change as needed
     custom_model_id = None  # Will auto-detect
     
     try:
@@ -66,7 +66,7 @@ def test_custom_server():
         print(f"Connection test: {connection_result}")
         
         if "✅" in connection_result:
-            response = client.prompt("Hello, can you help me test this connection?")
+            response = client.prompt("What is 2 + 2?")
             print(f"Test response: {response}")
             
     except Exception as e:
@@ -74,11 +74,10 @@ def test_custom_server():
 
 
 if __name__ == "__main__":
-    test_model_response()
-    test_custom_server()
+    test_custom_server(port=6006)
     
-    print("\n=== Instructions ===")
-    print("1. Make sure your LLM server is running locally")
-    print("2. Common ports are 6005, 8000, 1234, etc.")
-    print("3. Modify the port in this script if needed")
-    print("4. Run: python test_llm_client.py") 
+    # print("\n=== Instructions ===")
+    # print("1. Make sure your LLM server is running locally")
+    # print("2. Common ports are 6005, 8000, 1234, etc.")
+    # print("3. Modify the port in this script if needed")
+    # print("4. Run: python test_llm_client.py") 

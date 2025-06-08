@@ -1,0 +1,11 @@
+models:
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # Port 6008
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # Port 6009
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # Port 6010
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # Port 6011
+
+ports:
+  - 6008
+  - 6009
+  - 6010
+  - 6011 

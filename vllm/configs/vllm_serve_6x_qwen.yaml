@@ -1,0 +1,15 @@
+models:
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # GPU 0
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # GPU 1  
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # GPU 2
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # GPU 3
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # GPU 4
+  - deepseek-ai/DeepSeek-R1-Distill-Qwen-7B  # GPU 5
+
+ports:
+  - 6010  # GPU 0
+  - 6011  # GPU 1
+  - 6012  # GPU 2
+  - 6013  # GPU 3
+  - 6014  # GPU 4
+  - 6015  # GPU 5 

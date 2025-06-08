@@ -12,6 +12,10 @@ python scripts/generate_data.py
 python scripts/generate_responses.py --port <PORT> --max-workers <WORKERS>
 ```
 
+# 3. Generate responses (much faster with 4 GPUs!)
+```bash
+python scripts/generate_responses_multi_gpu.py --ports 6000 6001 6002 6003
+
 ### 3. Evaluate Responses
 ```bash
 python scripts/evaluate_responses.py --port <PORT> --max-workers <WORKERS>

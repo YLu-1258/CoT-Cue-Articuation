@@ -51,7 +51,7 @@ def main():
     if args.cue:
         # Evaluate for specific cue
         cue = Cue(args.cue)
-        responses_file = Path("data/responses") / f"{cue.value}_responses.jsonl"
+        responses_file = Path("data/responses/filtered") / f"{cue.value}_responses_filtered.jsonl"
         
         if not responses_file.exists():
             print(f"❌ Responses file not found: {responses_file}")
@@ -62,7 +62,7 @@ def main():
         print(f"\n✅ Evaluation completed: {evaluation_file}")
     else:
         # Evaluate for all cues
-        results = evaluator.evaluate_all_responses()
+        results = evaluator.evaluate_all_responses("data/responses/filtered")
         
         print("=" * 50)
         print("📊 EVALUATION SUMMARY:")

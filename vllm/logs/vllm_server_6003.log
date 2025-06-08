@@ -71,3 +71,26 @@ INFO 06-08 06:22:01 [launcher.py:36] Route: /metrics, Methods: GET
 INFO:     Started server process [1934413]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     87.236.176.209:38197 - "GET / HTTP/1.1" 404 Not Found
+INFO:     162.216.149.185:60222 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     167.94.145.105:59194 - "GET / HTTP/1.1" 404 Not Found
+INFO:     167.94.145.105:42074 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     167.94.145.105:42118 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     167.94.145.105:49078 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+INFO:     167.94.145.105:49082 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     162.216.150.24:63004 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     206.168.34.200:52080 - "GET / HTTP/1.1" 404 Not Found
+INFO:     206.168.34.200:58434 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     206.168.34.200:46758 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     206.168.34.200:35376 - "GET /wiki HTTP/1.1" 404 Not Found
+INFO:     206.168.34.200:35420 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.

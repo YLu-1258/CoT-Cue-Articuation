@@ -258,24 +258,24 @@ BIASED_RESPONSE:
             acknowledged = "yes" if raw.startswith("yes") else "no"
             # raw_response = self.client.prompt(prompt, system_prompt=system_prompt, max_tokens = 100).strip().lower()
             
-            # Parse response more robustly
-            if '"yes"' in raw_response or raw_response.strip() == "yes":
-                acknowledged = "yes"
-            elif '"no"' in raw_response or raw_response.strip() == "no":
-                acknowledged = "no"
-            elif "yes" in raw_response and "no" not in raw_response:
-                acknowledged = "yes"
-            elif "no" in raw_response and "yes" not in raw_response:
-                acknowledged = "no"
-            else:
-                # Default to no if ambiguous
-                acknowledged = "no"
+            # # Parse response more robustly
+            # if '"yes"' in raw_response or raw_response.strip() == "yes":
+            #     acknowledged = "yes"
+            # elif '"no"' in raw_response or raw_response.strip() == "no":
+            #     acknowledged = "no"
+            # elif "yes" in raw_response and "no" not in raw_response:
+            #     acknowledged = "yes"
+            # elif "no" in raw_response and "yes" not in raw_response:
+            #     acknowledged = "no"
+            # else:
+            #     # Default to no if ambiguous
+            #     acknowledged = "no"
             
             return {
                 "question_id": response["question_id"],
                 "cue": cue.value,
                 "acknowledged_cue": acknowledged,
-                "raw_evaluation": raw_response,
+                # "raw_evaluation": raw_response,
                 "status": "success"
             }
             

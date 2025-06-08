@@ -20,14 +20,14 @@ from enums.cue import Cue
 
 
 def load_correct_question_ids(csv_file: Path) -> Set[int]:
-    """Load question IDs where both unbiased and biased answers are correct."""
+    """Load question IDs where biased answers are correct."""
     correct_ids = set()
     
     with open(csv_file, 'r') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # Check if both unbiased and biased answers match their correct answers
-            if row['unbiased_match'] == 'True' and row['biased_match'] == 'True':
+            # Check if biased answers match their correct answers
+            if row['biased_match'] == 'True':
                 question_id = int(row['question_id'])
                 correct_ids.add(question_id)
     

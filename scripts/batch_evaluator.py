@@ -7,12 +7,17 @@ import argparse
 from pathlib import Path
 
 import openai
+import re
 
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from enums.cue import Cue
 
+def batch_number(path: Path) -> int:
+    # extract the integer after "batch_"
+    m = re.search(r"batch_(\d+)\.jsonl$", path.name)
+    return int(m.group(1)) if m else 0
 
 def main():
     p = argparse.ArgumentParser(
@@ -31,7 +36,7 @@ def main():
         sys.exit(1)
 
     # find all sub‐batches
-    batch_files = sorted(batch_dir.glob("batch_*.jsonl"))
+    batch_files = sorted(batch_dir.glob("batch_*.jsonl"), key=batch_number)
     if not batch_files:
         print(f"❌ No batch_*.jsonl files under {batch_dir}")
         sys.exit(1)

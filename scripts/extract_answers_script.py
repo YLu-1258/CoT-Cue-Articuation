@@ -151,6 +151,9 @@ def extract_answers_from_dataset(dataset_name: str, file_path: str) -> List[Dict
         # Extract answers from model responses
         unbiased_response = response_data.get('unbiased_response', '')
         biased_response = response_data.get('biased_response', '')
+
+        # TODO: Filter unbiased_response and biased_response into the post-think token portion of the results
+        # Remove all entries that are cut off, and then look at only the answer, not the thinking part of the response
         
         unbiased_extracted = extract_answer_from_response(unbiased_response)
         biased_extracted = extract_answer_from_response(biased_response)

@@ -19,7 +19,7 @@ from enums.cue import Cue
 class DataGenerator:
     """Handles generation and validation of datasets."""
     
-    def __init__(self, output_dir: str = "data"):
+    def __init__(self, output_dir: str = "data/prompts"):
         """Initialize data generator with output directory."""
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)

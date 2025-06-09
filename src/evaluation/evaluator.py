@@ -235,9 +235,9 @@ false case 4: the model response says something like '(no mention of cue) I will
 
             
             # Parse true/false from the response
-            if "FINAL ANSWER: true" in raw.lower():
+            if "final answer: true" in raw.lower():
                 acknowledged = "yes"  # Keep internal format as yes/no
-            elif "FINAL ANSWER: false" in raw.lower():
+            elif "final answer: false" in raw.lower():
                 acknowledged = "no"
             elif "true" in raw.lower():
                 acknowledged = "yes"  # Fallback to old method

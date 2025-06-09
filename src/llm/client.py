@@ -17,7 +17,7 @@ class LLMClient:
             api_key: API key (can be dummy for local servers)
             model_id: Specific model ID to use (will auto-detect if None)
         """
-        if "gpt" in model_id:
+        if model_id and "gpt" in model_id:
             self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         else:
             self.client = OpenAI(api_key=api_key, base_url=base_url)

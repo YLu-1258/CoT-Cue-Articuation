@@ -74,7 +74,7 @@ def test_custom_server(port: int):
 
 
 if __name__ == "__main__":
-    test_custom_server(port=6006)
+    test_custom_server(port=6000)
     
     # print("\n=== Instructions ===")
     # print("1. Make sure your LLM server is running locally")

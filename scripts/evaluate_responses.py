@@ -43,9 +43,10 @@ def main():
         print(f"Make sure the server is running on port {args.port}")
         sys.exit(1)
     
-    # Create model evaluator
+    # Create model evaluator with folder named after the actual model being used
     max_workers = args.max_workers if args.max_workers else 8  # Default to 8 if not specified
-    evaluator = ModelEvaluator(client, f"data/model_evaluation/{args.model_id}", max_workers)
+    model_name = client.model_id.replace('/', '_').replace(':', '_')  # Clean model name for folder
+    evaluator = ModelEvaluator(client, f"data/model_evaluation/{model_name}", max_workers)
     
     # Evaluate responses
     if args.cue:

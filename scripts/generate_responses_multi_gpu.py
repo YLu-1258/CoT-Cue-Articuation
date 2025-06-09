@@ -380,7 +380,7 @@ class FastResponseGenerator:
         self.console.print(f"✅ Response generation completed: {output_file}")
         return output_file
     
-    async def generate_all_responses(self, data_dir: str = "data") -> Dict[Cue, Path]:
+    async def generate_all_responses(self, data_dir: str = "data/prompts") -> Dict[Cue, Path]:
         """Generate responses for all available datasets."""
         data_path = Path(data_dir)
         results = {}
@@ -406,7 +406,7 @@ async def main():
                        help="Number of concurrent workers per GPU (default: 4)")
     parser.add_argument("--cue", type=str, choices=[cue.value for cue in Cue],
                        help="Generate responses for specific cue only")
-    parser.add_argument("--output-dir", type=str, default="data/responses",
+    parser.add_argument("--output-dir", type=str, default="data/responses/raw",
                        help="Output directory for responses")
     
     args = parser.parse_args()
@@ -429,7 +429,7 @@ async def main():
         if args.cue:
             # Generate for specific cue
             cue = Cue(args.cue)
-            input_file = Path("data") / f"{cue.value}.jsonl"
+            input_file = Path("data/prompts") / f"{cue.value}.jsonl"
             
             if not input_file.exists():
                 console.print(f"❌ Dataset not found: {input_file}")

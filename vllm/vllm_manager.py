@@ -70,7 +70,12 @@ class VLLMManager:
         env = os.environ.copy()
         env['CUDA_VISIBLE_DEVICES'] = str(gpu_id)
         
-        # Command to run
+        # Command to run for Alex
+        # cmd = [
+        #     "bash", "-c",
+        #     f"source /data/alexl/anaconda3/etc/profile.d/conda.sh && conda activate vllm && vllm serve {model} --port {port}"
+        # ]
+
         cmd = [
             "bash", "-c",
             f"source ~/miniconda3/etc/profile.d/conda.sh && conda activate vllm && vllm serve {model} --port {port}"

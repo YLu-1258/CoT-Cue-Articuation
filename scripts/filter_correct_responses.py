@@ -61,13 +61,15 @@ def main():
     parser = argparse.ArgumentParser(description="Filter responses where both unbiased and biased answers are correct")
     parser.add_argument("--cue", type=str, choices=[cue.value for cue in Cue],
                        help="Filter specific cue only")
-    parser.add_argument("--responses-dir", type=str, default="data/responses",
+    parser.add_argument("--csv-dir", type=str, default="data/responses")
+    parser.add_argument("--responses-dir", type=str, default="data/responses/raw",
                        help="Directory containing response files")
     parser.add_argument("--output-dir", type=str, default="data/responses/filtered",
                        help="Output directory for filtered responses")
     
     args = parser.parse_args()
     
+    csv_dir = Path(args.csv_dir)
     responses_dir = Path(args.responses_dir)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -88,7 +90,7 @@ def main():
         print(f"\n📊 Processing {cue.display_name}...")
         
         # Load CSV file with extracted answers
-        csv_file = responses_dir / f"extracted_answers_{cue.value}.csv"
+        csv_file = csv_dir / f"extracted_answers_{cue.value}.csv"
         responses_file = responses_dir / f"{cue.value}_responses.jsonl"
         output_file = output_dir / f"{cue.value}_responses_filtered.jsonl"
         

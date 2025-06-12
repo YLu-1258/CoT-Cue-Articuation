@@ -124,7 +124,14 @@ if st.session_state.file_path != evaluation_files[selected_file]:
     st.session_state.data = load_jsonl_file(st.session_state.file_path)
     st.session_state.responses_data = load_responses_file(response_files[selected_file])
     st.session_state.checked_items = load_progress(st.session_state.file_path)
-    st.session_state.current_index = 0
+    
+    # Find first unchecked item
+    first_unchecked = 0
+    for i, item in enumerate(st.session_state.data):
+        if str(item['question_id']) not in st.session_state.checked_items:
+            first_unchecked = i
+            break
+    st.session_state.current_index = first_unchecked
 
 if st.session_state.data:
     total_items = len(st.session_state.data)
@@ -169,11 +176,13 @@ if st.session_state.data:
     # Main content - BIASED RESPONSE AND EVALUATION
     st.markdown("---")
     
+    st.markdown(f"**Question ID:** {question_id}")
+    
     # Two column layout: Biased response (larger) and Evaluation
     resp_col, eval_col = st.columns([2, 1])
     
     with resp_col:
-        st.markdown("## 🎯 Model's Response")
+        st.markdown("## 🎯 Model's Biased Response")
         if 'biased_response' in matching_response:
             biased_text = st.text_area(
                 "Response:",
@@ -196,6 +205,8 @@ if st.session_state.data:
             disabled=True,
             label_visibility="collapsed"
         )
+    
+    st.markdown(f"##### Acknoledged Cue: {current_item.get('acknowledged_cue', '').capitalize()}")
     
     # Quick assessment buttons right below
     st.markdown("**Is this evaluation correct for the response?**")

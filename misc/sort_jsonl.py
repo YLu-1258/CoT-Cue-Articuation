@@ -1,6 +1,6 @@
 import json
 
-files = ['data/responses/stanford_professor_responses.jsonl', 'data/responses/fewshot_black_squares_responses.jsonl']
+files = ['data/responses/filtered/stanford_professor_responses_filtered.jsonl', 'data/responses/filtered/fewshot_black_squares_responses_filtered.jsonl']
 
 # Read JSONL lines
 for file in files:

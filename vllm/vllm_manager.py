@@ -78,7 +78,7 @@ class VLLMManager:
 
         cmd = [
             "bash", "-c",
-            f"source ~/miniconda3/etc/profile.d/conda.sh && conda activate vllm && vllm serve {model} --port {port}"
+            f"source /data/kevinchu/miniconda3/etc/profile.d/conda.sh && conda activate vllm && vllm serve {model} --port {port}"
         ]
         # Using Kevin's vllm environment
         

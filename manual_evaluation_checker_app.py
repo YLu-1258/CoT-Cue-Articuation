@@ -43,17 +43,17 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Create data directory for persistent storage
-SAVE_DIR = "/data/kevinchu/CoT-Cue-Articuation/manual_check_data"
+SAVE_DIR = "/data/alexl/CoT-Cue-Articuation/manual_check_data"
 os.makedirs(SAVE_DIR, exist_ok=True)
 
-def get_progress_file_path(file_name):
+def get_progress_file_path(file_name, model_id):
     """Get the path for saving progress for a specific evaluation file"""
     base_name = file_name.replace('.jsonl', '')
-    return os.path.join(SAVE_DIR, f"{base_name}_progress.json")
+    return os.path.join(SAVE_DIR, model_id, f"{base_name}_progress.json")
 
-def save_progress(file_path, checked_items):
+def save_progress(file_path, checked_items, model_id):
     """Save progress to disk"""
-    progress_file = get_progress_file_path(os.path.basename(file_path))
+    progress_file = get_progress_file_path(os.path.basename(file_path), model_id)
     progress_data = {
         'timestamp': datetime.now().isoformat(),
         'file_path': file_path,
@@ -66,9 +66,9 @@ def save_progress(file_path, checked_items):
     
     return progress_file
 
-def load_progress(file_path):
+def load_progress(file_path, model_id):
     """Load progress from disk"""
-    progress_file = get_progress_file_path(os.path.basename(file_path))
+    progress_file = get_progress_file_path(os.path.basename(file_path), model_id)
     if os.path.exists(progress_file):
         try:
             with open(progress_file, 'r') as f:
@@ -150,12 +150,24 @@ with col1:
 with col2:
     selected_file = st.selectbox("File:", list(evaluation_files.keys()), label_visibility="collapsed")
 
+# Extract dataset key from the selected file name
+if "Black Squares" in selected_file:
+    dataset_key = "Few-shot Black Squares"
+else:
+    dataset_key = "Stanford Professor"
+
+if "GPT" in selected_file:
+    model_id = "gpt-4o"
+elif "Llama" in selected_file:
+    model_id = "meta-llama_Llama-3.1-8B-Instruct"
+
+
 # Load data when file selection changes
 if st.session_state.file_path != evaluation_files[selected_file]:
     st.session_state.file_path = evaluation_files[selected_file]
     st.session_state.data = load_jsonl_file(st.session_state.file_path)
-    st.session_state.responses_data = load_responses_file(response_files[selected_file])
-    st.session_state.checked_items = load_progress(st.session_state.file_path)
+    st.session_state.responses_data = load_responses_file(response_files[dataset_key])
+    st.session_state.checked_items = load_progress(st.session_state.file_path, model_id)
     
     # Find first unchecked item
     first_unchecked = 0
@@ -278,7 +290,7 @@ if st.session_state.data:
             'cue': current_item.get('cue', ''),
             'acknowledged_cue': current_item.get('acknowledged_cue', '')
         }
-        save_progress(st.session_state.file_path, st.session_state.checked_items)
+        save_progress(st.session_state.file_path, st.session_state.checked_items, model_id)
         
         # Auto advance
         if st.session_state.current_index < total_items - 1:
@@ -326,7 +338,7 @@ if st.session_state.data:
                     st.error(f"**Model's Biased Answer:** {matching_response['suggested_wrong_answer']}")
     
     st.markdown("**📊 Assessment Summary**")
-    path = get_progress_file_path(os.path.basename(st.session_state.file_path))
+    path = get_progress_file_path(os.path.basename(st.session_state.file_path), model_id)
     counts = count_with_pandas(path)
     st.bar_chart(counts)
     # Export button at bottom

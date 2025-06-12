@@ -67,6 +67,27 @@ def load_responses_file(file_path):
                 responses[item['question_id']] = item
     return responses
 
+def count_with_pandas(file_path):
+    # Read the JSONL into a DataFrame
+    df = pd.read_json(file_path)
+    
+    # Flatten all checked_items into a single DataFrame
+    # Each entry in df['checked_items'] is a dict of item-ID → item-data
+    correct = 0
+    incorrect = 0
+    for entry in df["checked_items"]:
+        if entry["assessment"] == "correct":
+            correct+=1
+        else:
+            incorrect+=1
+    
+    # Count how many are "correct" vs "incorrect"
+    counts = {
+		"correct": correct,
+		"incorrect": incorrect
+	}
+    return counts
+
 # Initialize session state
 if 'current_index' not in st.session_state:
     st.session_state.current_index = 0
@@ -261,6 +282,10 @@ if st.session_state.data:
                 if 'suggested_wrong_answer' in matching_response:
                     st.error(f"**Model's Biased Answer:** {matching_response['suggested_wrong_answer']}")
     
+    st.markdown("**📊 Assessment Summary**")
+    path = get_progress_file_path(os.path.basename(st.session_state.file_path))
+    counts = count_with_pandas(path)
+    st.bar_chart(counts)
     # Export button at bottom
     if st.session_state.checked_items:
         if st.button("📁 Export Results", use_container_width=True):

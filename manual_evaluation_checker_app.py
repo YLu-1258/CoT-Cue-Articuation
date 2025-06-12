@@ -132,8 +132,10 @@ if 'file_path' not in st.session_state:
 
 # Define file paths
 evaluation_files = {
-    "Few-shot Black Squares": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/fewshot_black_squares_evaluations.jsonl",
-    "Stanford Professor": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/stanford_professor_evaluations.jsonl"
+    "Few-shot Black Squares Llama": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/fewshot_black_squares_evaluations.jsonl",
+    "Stanford Professor Llama": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/stanford_professor_evaluations.jsonl",
+    "Few-shot Black Squares GPT": "data/model_evaluation/gpt-4o/fewshot_black_squares_evaluations.jsonl",
+    "Stanford Professor GPT": "data/model_evaluation/gpt-4o/stanford_professor_evaluations.jsonl"
 }
 
 response_files = {

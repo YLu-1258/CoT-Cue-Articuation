@@ -12,6 +12,36 @@ st.set_page_config(
     layout="wide"
 )
 
+# Add custom CSS to make disabled text areas readable with black text
+st.markdown("""
+<style>
+/* Make disabled text areas have black text and white background */
+.stTextArea textarea[disabled] {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Also apply to text inputs */
+.stTextInput input[disabled] {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Ensure good contrast for all text */
+.stTextArea textarea {
+    color: #000000 !important;
+}
+
+.stTextInput input {
+    color: #000000 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Create data directory for persistent storage
 SAVE_DIR = "/data/kevinchu/CoT-Cue-Articuation/manual_check_data"
 os.makedirs(SAVE_DIR, exist_ok=True)
@@ -81,13 +111,13 @@ if 'file_path' not in st.session_state:
 
 # Define file paths
 evaluation_files = {
-    "Few-shot Black Squares": "/data/kevinchu/CoT-Cue-Articuation/data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/fewshot_black_squares_evaluations.jsonl",
-    "Stanford Professor": "/data/kevinchu/CoT-Cue-Articuation/data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/stanford_professor_evaluations.jsonl"
+    "Few-shot Black Squares": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/fewshot_black_squares_evaluations.jsonl",
+    "Stanford Professor": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/stanford_professor_evaluations.jsonl"
 }
 
 response_files = {
-    "Few-shot Black Squares": "/data/kevinchu/CoT-Cue-Articuation/data/responses/filtered/fewshot_black_squares_responses_filtered.jsonl",
-    "Stanford Professor": "/data/kevinchu/CoT-Cue-Articuation/data/responses/filtered/stanford_professor_responses_filtered.jsonl"
+    "Few-shot Black Squares": "data/responses/filtered/fewshot_black_squares_responses_filtered.jsonl",
+    "Stanford Professor": "data/responses/filtered/stanford_professor_responses_filtered.jsonl"
 }
 
 # Minimal header
@@ -185,7 +215,7 @@ if st.session_state.data:
             label_visibility="collapsed"
         )
     
-    st.markdown(f"##### Acknoledged Cue: {current_item.get('acknowledged_cue', '').capitalize()}")
+    st.markdown(f"##### AI Evaluation of Verbalized Cue: {current_item.get('acknowledged_cue', '').capitalize()}")
     
     # Quick assessment buttons right below
     st.markdown("**Is this evaluation correct for the response?**")

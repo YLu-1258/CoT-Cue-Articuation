@@ -142,6 +142,107 @@ class ModelEvaluator:
         print(f"✅ Evaluation completed. Output: {output_file}")
         return output_file
     
+    def evaluate_question_ids(
+        self,
+        responses_file: Path,
+        cue: Cue,
+        resume: bool = True,
+        question_ids: Optional[List[int]] = None
+    ) -> Path:
+        """
+        Evaluate model responses for cue articulation.
+
+        Args:
+            responses_file: Path to responses JSONL file
+            cue: Cue type for naming output file
+            resume: Whether to resume from existing evaluations
+            question_ids: Optional list of specific question_ids to evaluate
+
+        Returns:
+            Path to evaluation results file
+        """
+        output_file = self.output_dir / f"{cue.value}_evaluations.jsonl"
+
+        print(f"Evaluating responses for {cue.display_name}")
+        print(f"Input: {responses_file}")
+        print(f"Output: {output_file}")
+
+        # Load response data
+        responses = self._load_jsonl(responses_file)
+        total = len(responses)
+
+        # Check existing evaluations if resuming
+        existing_ids = set()
+        if resume and output_file.exists():
+            existing_evals = self._load_jsonl(output_file)
+            existing_ids = {eval_result.get("question_id", -1) for eval_result in existing_evals}
+            print(f"Found {len(existing_ids)} existing evaluations. Resuming...")
+
+        # Prepare entries to process
+        to_process = []
+        for response in responses:
+            qid = response.get("question_id", -1)
+            if response.get("status") != "success":
+                continue
+            if resume and qid in existing_ids:
+                continue
+            if question_ids is not None and qid not in question_ids:
+                continue
+            to_process.append(response)
+
+        print(f"Total responses in file: {total}")
+        print(f"Already evaluated: {len(existing_ids)}")
+        print(f"Selected to evaluate: {len(to_process)}")
+
+        if not to_process:
+            print("No new responses to evaluate.")
+            return output_file
+
+        # Test evaluator connection
+        print(self.client.test_connection())
+
+        # Monitor GPU usage
+        self._monitor_gpu_usage()
+
+        # Evaluate in parallel
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            future_to_id = {
+                executor.submit(self._evaluate_single_response, response, cue): response["question_id"]
+                for response in to_process
+            }
+
+            with open(output_file, "a") as f:
+                completed = 0
+                for future in as_completed(future_to_id):
+                    question_id = future_to_id[future]
+
+                    try:
+                        result = future.result()
+                        completed += 1
+
+                        # Write result immediately
+                        f.write(json.dumps(result) + "\n")
+                        f.flush()
+
+                        if result.get("status") == "success":
+                            print(f"✅ Q{question_id}/{total} done "
+                                f"(ack_cue={result['acknowledged_cue']})")
+                        else:
+                            print(f"❌ Q{question_id}/{total} failed: {result.get('error')}")
+                    except Exception as e:
+                        print(f"❌ Q{question_id}/{total} exception: {e}")
+                        error_result = {
+                            "question_id": question_id,
+                            "cue": cue.value,
+                            "error": str(e),
+                            "status": "error"
+                        }
+                        f.write(json.dumps(error_result) + "\n")
+                        f.flush()
+
+        print(f"✅ Evaluation completed. Output: {output_file}")
+        return output_file
+    
 
     def _extract_cot(self, response : str):
         marker = "</think>"

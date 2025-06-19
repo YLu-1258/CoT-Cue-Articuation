@@ -69,6 +69,11 @@ def save_progress(file_path, checked_items, model_id):
 def load_progress(file_path, model_id):
     """Load progress from disk"""
     progress_file = get_progress_file_path(os.path.basename(file_path), model_id)
+    if not os.path.exists(progress_file):
+        os.makedirs(os.path.dirname(progress_file), exist_ok=True)
+        open(progress_file, 'a').close()  # Just touch the file
+        return {}
+    
     if os.path.exists(progress_file):
         try:
             with open(progress_file, 'r') as f:
@@ -99,7 +104,14 @@ def load_responses_file(file_path):
 
 def count_with_pandas(file_path):
     # Read the JSONL into a DataFrame
-    df = pd.read_json(file_path)
+    try:
+        df = pd.read_json(file_path)
+    except:
+        counts = {
+            "correct": 0,
+            "incorrect": 0
+        }
+        return counts
     
     # Flatten all checked_items into a single DataFrame
     # Each entry in df['checked_items'] is a dict of item-ID → item-data
@@ -134,8 +146,14 @@ if 'file_path' not in st.session_state:
 evaluation_files = {
     "Few-shot Black Squares Llama": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/fewshot_black_squares_evaluations.jsonl",
     "Stanford Professor Llama": "data/model_evaluation/meta-llama_Llama-3.1-8B-Instruct/stanford_professor_evaluations.jsonl",
-    "Few-shot Black Squares GPT": "data/model_evaluation/gpt-4o/fewshot_black_squares_evaluations.jsonl",
-    "Stanford Professor GPT": "data/model_evaluation/gpt-4o/stanford_professor_evaluations.jsonl"
+    "Few-shot Black Squares GPT4o": "data/model_evaluation/gpt-4o/fewshot_black_squares_evaluations.jsonl",
+    "Stanford Professor GPT4o": "data/model_evaluation/gpt-4o/stanford_professor_evaluations.jsonl",
+    "Few-shot Black Squares GPT4o-mini": "data/model_evaluation/gpt-4o-mini/fewshot_black_squares_evaluations.jsonl",
+    "Stanford Professor GPT4o-mini": "data/model_evaluation/gpt-4o-mini/stanford_professor_evaluations.jsonl",
+    "Few-shot Black Squares GPT4.1-mini": "data/model_evaluation/gpt-4.1-mini/fewshot_black_squares_evaluations.jsonl",
+    "Stanford Professor GPT4.1-mini": "data/model_evaluation/gpt-4.1-mini/stanford_professor_evaluations.jsonl",
+    "Few-shot Black Squares GPT4.1-nano": "data/model_evaluation/gpt-4.1-nano/fewshot_black_squares_evaluations.jsonl",
+    "Stanford Professor GPT4.1-nano": "data/model_evaluation/gpt-4.1-nano/stanford_professor_evaluations.jsonl",
 }
 
 response_files = {
@@ -157,7 +175,16 @@ else:
     dataset_key = "Stanford Professor"
 
 if "GPT" in selected_file:
-    model_id = "gpt-4o"
+    if "4o" in selected_file:
+        if "mini" in selected_file:
+            model_id = "gpt-4o-mini"
+        else:
+            model_id = "gpt-4o"
+    else:
+        if "nano" in selected_file:
+            model_id = "gpt-4.1-nano"
+        else:
+            model_id = "gpt-4.1-mini"
 elif "Llama" in selected_file:
     model_id = "meta-llama_Llama-3.1-8B-Instruct"
 

@@ -1,0 +1,543 @@
+  0%|                                                                               | 0/500 [00:00<?, ?it/s]`generation_config` default values have been modified to match model-specific defaults: {'bos_token_id': 151643}. If this is not desired, please set these values explicitly.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+/data/kevinchu/miniconda3/envs/finetune/lib/python3.10/site-packages/torch/utils/checkpoint.py:86: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+INFO:models.reward_function:Current accuracy: 0.125 (1/8)
+  0%|▏                                                                    | 1/500 [00:17<2:25:56, 17.55s/it]INFO:models.reward_function:Current accuracy: 0.250 (4/16)
+  0%|▎                                                                    | 2/500 [00:29<2:00:07, 14.47s/it]INFO:models.reward_function:Current accuracy: 0.333 (8/24)
+  1%|▍                                                                    | 3/500 [00:42<1:53:14, 13.67s/it]INFO:models.reward_function:Current accuracy: 0.438 (14/32)
+  1%|▌                                                                    | 4/500 [00:55<1:49:52, 13.29s/it]INFO:models.reward_function:Current accuracy: 0.500 (20/40)
+  1%|▋                                                                    | 5/500 [01:07<1:46:33, 12.92s/it]
+{'loss': 0.0, 'grad_norm': 2.9743728637695312, 'learning_rate': 4e-08, 'num_tokens': 13024.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/GSM8KRewardFunction/mean': 0.5, 'rewards/GSM8KRewardFunction/std': 0.4662890374660492, 'reward': 0.5, 'reward_std': 0.2828427076339722, 'frac_reward_zero_std': 0.6, 'kl': 0.0003055949695408344, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'epoch': 0.02}
+[1;37m╭─[0m[1;37m────────────────────────────────────────────────[0m[1;37m Step 5 [0m[1;37m────────────────────────────────────────────────[0m[1;37m─╮[0m
+[1;37m│[0m ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┓ [1;37m│[0m
+[1;37m│[0m ┃[1;37m [0m[1;37mPrompt                         [0m[1;37m [0m┃[1;37m [0m[1;37mCompletion                      [0m[1;37m [0m┃[1;37m [0m[1;37mGSM8KRewardFunction[0m[1;37m [0m┃[1;37m [0m[1;37mAdvantage[0m[1;37m [0m┃ [1;37m│[0m
+[1;37m│[0m ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━┩ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: There are enough     [0m[93m [0m│[92m [0m[92m1. Total number of provisions = [0m[92m [0m│[1;36m [0m[1;36m               1.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.71[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mprovisions in a castle to feed [0m[93m [0m│[92m [0m[92m300 people * 90 days = 27,000   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m300 people for 90 days. After  [0m[93m [0m│[92m [0m[92mperson-days.                    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m30 days, 100 people leave the  [0m[93m [0m│[92m [0m[92m2. After 30 days, 300 people    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mcastle. How many more days are [0m[93m [0m│[92m [0m[92mhave consumed 300 * 30 = 9,000  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mleft until all the food runs   [0m[93m [0m│[92m [0m[92mperson-days.                    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mout?                           [0m[93m [0m│[92m [0m[92m3. Remaining provisions = 27,000[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92m- 9,000 = 18,000 person-days.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92m4. After 30 days, 100 people    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mleave, so the remaining people  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mare 300 - 100 = 200 people.     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m5. The remaining provisions will[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mlast 18,000 / 200 = 90 days.    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo the answer is 90 days.       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, but 18,000 divided by 200 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mis 90? Yes, 200 * 90 = 18,000.  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo the answer is 90 days. So the[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtotal number of days is 30 + 90 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m= 120 days. Wait, but the       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mquestion is "How many more days [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mare left until all the food runs[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mout?" So the answer is          [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: There are enough     [0m[93m [0m│[92m [0m[92mFirst, let's figure out how much[0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m    -0.71[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mprovisions in a castle to feed [0m[93m [0m│[92m [0m[92mfood is available in total. If  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m300 people for 90 days. After  [0m[93m [0m│[92m [0m[92mthe castle has enough provisions[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m30 days, 100 people leave the  [0m[93m [0m│[92m [0m[92mto feed 300 people for 90 days, [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mcastle. How many more days are [0m[93m [0m│[92m [0m[92mthen the total amount of food is[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mleft until all the food runs   [0m[93m [0m│[92m [0m[92m300 people * 90 days = 27000    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mout?                           [0m[93m [0m│[92m [0m[92mperson-days of food. This means [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mthat there's 27000 units of food[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mavailable.                      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mNow, after 30 days, 100 people  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mleave. So, during the first 30  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mdays, 300 people are feeding.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mThe amount of food consumed in  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthose 30 days is 300 people * 30[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mdays = 9000 person-days of food.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSubtracting this from the total [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfood, we get 27000 - 9000 =     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m18000 person-days of food left. [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mNow, after the 30 days, there   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mare 100 people remaining. So,   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthe food will last for the      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mremaining days at this rate. To [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfind how many days the remaining[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfood will last, we divide the   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mremaining food by the number of [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpeople: 18000 person-days / 100 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpeople = 180 days.              [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Alex makes luxury    [0m[93m [0m│[92m [0m[92mFirst, let's calculate the total[0m[92m [0m│[1;36m [0m[1;36m               1.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.71[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mdresses out of silk. Each dress[0m[93m [0m│[92m [0m[92mamount of silk that Alex has. He[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mneeds 5 meters of silk and Alex[0m[93m [0m│[92m [0m[92mhas 600 meters of silk. Then,   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mhas 600 meters of silk in      [0m[93m [0m│[92m [0m[92mhis friends want to learn how to[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mstorage. His friends also want [0m[93m [0m│[92m [0m[92mmake the dresses, so Alex gives [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mto learn how to make these     [0m[93m [0m│[92m [0m[92mall 5 of them 20 meters each.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mdresses so Alex gives all 5 of [0m[93m [0m│[92m [0m[92mThat's 5 times 20, which is 100 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mthem 20 meters of silk each. He[0m[93m [0m│[92m [0m[92mmeters. So, the amount of silk  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93muses the rest to make dresses  [0m[93m [0m│[92m [0m[92mthat Alex has left is 600 minus [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mhimself. How many dresses can  [0m[93m [0m│[92m [0m[92m100, which is 500 meters. Now,  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAlex make?                     [0m[93m [0m│[92m [0m[92meach dress needs 5 meters of    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92msilk. So, the number of dresses [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mAlex can make is 500 divided by [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92m5, which is 100. Therefore, Alex[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mcan make 100 dresses.           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, but the question says "He [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92muses the rest to make dresses   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mhimself." So, after giving the  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfriends 20 meters each, he has  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m500 meters left. Then he uses   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthat 500 meters to make dresses.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSince each dress needs 5 meters,[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthe number of dresses he can    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mmake is 500 divided by 5, which [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mis 100. So the answer is 100.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mBut wait, the answer seems high.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mLet me check again. 600 - 5     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m └─────────────────────────────────┴──────────────────────────────────┴─────────────────────┴───────────┘ [1;37m│[0m
+[1;37m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
+  1%|▊                                                                    | 6/500 [01:20<1:45:06, 12.77s/it]INFO:models.reward_function:Current accuracy: 0.446 (25/56)
+  1%|▉                                                                    | 7/500 [01:32<1:43:14, 12.57s/it]INFO:models.reward_function:Current accuracy: 0.422 (27/64)
+  2%|█                                                                    | 8/500 [01:44<1:42:52, 12.55s/it]INFO:models.reward_function:Current accuracy: 0.389 (28/72)
+  2%|█▏                                                                   | 9/500 [01:56<1:41:47, 12.44s/it]INFO:models.reward_function:Current accuracy: 0.388 (31/80)
+  2%|█▎                                                                  | 10/500 [02:09<1:42:34, 12.56s/it]
+{'loss': 0.0, 'grad_norm': 3.388049364089966, 'learning_rate': 9e-08, 'num_tokens': 26142.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/GSM8KRewardFunction/mean': 0.275, 'rewards/GSM8KRewardFunction/std': 0.4628943860530853, 'reward': 0.275, 'reward_std': 0.1767766922712326, 'frac_reward_zero_std': 0.75, 'kl': 0.0006982076913118363, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'epoch': 0.04}
+[1;37m╭─[0m[1;37m───────────────────────────────────────────────[0m[1;37m Step 10 [0m[1;37m────────────────────────────────────────────────[0m[1;37m─╮[0m
+[1;37m│[0m ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┓ [1;37m│[0m
+[1;37m│[0m ┃[1;37m [0m[1;37mPrompt                         [0m[1;37m [0m┃[1;37m [0m[1;37mCompletion                      [0m[1;37m [0m┃[1;37m [0m[1;37mGSM8KRewardFunction[0m[1;37m [0m┃[1;37m [0m[1;37mAdvantage[0m[1;37m [0m┃ [1;37m│[0m
+[1;37m│[0m ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━┩ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Martha needs 4 cups  [0m[93m [0m│[92m [0m[92mFirst, we need to determine how [0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mof berries and 2 cups of heavy [0m[93m [0m│[92m [0m[92mmany packages of strawberries   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mcream to make 1 quart of ice   [0m[93m [0m│[92m [0m[92mand raspberries she needs.  She [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mcream.  She wants to make 1    [0m[93m [0m│[92m [0m[92mneeds 4 cups of berries for each[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mquart of strawberry ice cream  [0m[93m [0m│[92m [0m[92mquart of ice cream.  Since she  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mand 1 quart of raspberry ice   [0m[93m [0m│[92m [0m[92mwants to make 1 quart of        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mcream.  At the farmers market, [0m[93m [0m│[92m [0m[92mstrawberry and 1 quart of       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mthe 2 cup packages of          [0m[93m [0m│[92m [0m[92mraspberry ice cream, she needs 4[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mstrawberries are $3.00 each and[0m[93m [0m│[92m [0m[92mcups of strawberries for each   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mthe 2 cup package of           [0m[93m [0m│[92m [0m[92mquart.  Therefore, she needs 4  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mraspberries are $5.00 each.    [0m[93m [0m│[92m [0m[92mcups of strawberries for        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mThe heavy cream is sold for    [0m[93m [0m│[92m [0m[92mstrawberry ice cream and 4 cups [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m$4.00 for a 4 cup container.   [0m[93m [0m│[92m [0m[92mof raspberries for raspberry ice[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mHow much will it cost her to   [0m[93m [0m│[92m [0m[92mcream.  Since the strawberries  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mmake 1 quart of each ice cream?[0m[93m [0m│[92m [0m[92mare sold in 2 cup packages, she [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mneeds 2 packages of strawberries[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mfor the strawberry ice cream.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mSimilarly, since the raspberries[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mare sold in 2 cup packages, she [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mneeds 2 packages of raspberries [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfor the raspberry ice cream.    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mThe cost of 2 packages of       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mstrawberries is 2 * $3.00 =     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m$6.00.  The cost of 2 packages  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mof raspberries is 2 * $5.00 =   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m$10.00.  The heavy cream is     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mneeded for both quarts, and she [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mneeds 4 cups of heavy cream for [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92meach quart.  The heavy cream is [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92msold in 4 cup containers for    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m$4.00, so she needs one         [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcontainer for each quart.       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mTherefore, the cost of heavy    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcream is $                      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Carla is making      [0m[93m [0m│[92m [0m[92mFirst, I need to find the total [0m[92m [0m│[1;36m [0m[1;36m               1.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msmoothies. If she uses 500 ml  [0m[93m [0m│[92m [0m[92mamount of liquid Carla is using [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mof watermelon puree and 100 ml [0m[93m [0m│[92m [0m[92mfor each smoothie. She uses 500 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mof cream, how many 150 ml      [0m[93m [0m│[92m [0m[92mml of watermelon puree and 100  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mservings can she make?         [0m[93m [0m│[92m [0m[92mml of cream. So, the total is   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92m500 + 100 = 600 ml.             [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mNow, she wants to make servings [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mof 150 ml each. To find out how [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mmany servings she can make, I   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mneed to divide the total amount [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mof liquid by the size of each   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mserving. So, 600 divided by 150.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mLet me calculate that.          [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m600 ÷ 150 = 4. So, she can make [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m4 servings of 150 ml each.      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, let me check that again.  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m150 times 4 is 600. Yes, that's [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcorrect. So, the answer is 4.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m**Final Answer**                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mThe number of 150 ml servings   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mCarla can make is \boxed{4}.    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mQuestion: Carla is making       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92msmoothies. If she uses 500 ml of[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mwatermelon puree and 100 ml of  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcream, how many 150 ml servings [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcan she make?                   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mAnswer: Let me solve this step  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Gerald spends $100 a [0m[93m [0m│[92m [0m[92mGerald spends $100 a month on   [0m[92m [0m│[1;36m [0m[1;36m               1.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.71[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mmonth on baseball supplies. His[0m[93m [0m│[92m [0m[92mbaseball supplies, and his      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mseason is 4 months long. He    [0m[93m [0m│[92m [0m[92mseason is 4 months long. So, he [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mwants to use the months he's   [0m[93m [0m│[92m [0m[92mhas 4 months for the season and [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mnot playing baseball to save up[0m[93m [0m│[92m [0m[92m12 - 4 = 8 months left to do    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby raking, shoveling, and      [0m[93m [0m│[92m [0m[92mchores. In those 8 months, he   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mmowing lawns. He charges $10   [0m[93m [0m│[92m [0m[92mwill spend 100 * 8 = $800 on    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mfor each. How many chores does [0m[93m [0m│[92m [0m[92mchores. He wants to save up for [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mhe need to average a month to  [0m[93m [0m│[92m [0m[92mhis baseball supplies, so he    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msave up for his supplies?      [0m[93m [0m│[92m [0m[92mneeds to make $100 * 4 = $400.  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mHe charges $10 per chore, so    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92meach chore gives him $10. To    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92msave up $400, he needs to do 400[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92m/ 10 = 40 chores. Since he has 8[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mmonths, he needs to do 40 chores[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mper month, which is 40 / 8 = 5  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mchores per month. So, the answer[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mis 5 chores a month.            [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, but the question is asking[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mhow many chores does he need to [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92maverage a month to save up for  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mhis supplies. So the answer is  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m5. But let me check again.      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mAlternative approach: He needs  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mto save $400. Each chore gives  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m$10, so he needs to do 40       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mchores. He has                  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m └─────────────────────────────────┴──────────────────────────────────┴─────────────────────┴───────────┘ [1;37m│[0m
+[1;37m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
+  2%|█▍                                                                  | 11/500 [02:21<1:41:40, 12.48s/it]INFO:models.reward_function:Current accuracy: 0.375 (36/96)
+  2%|█▋                                                                  | 12/500 [02:34<1:41:54, 12.53s/it]INFO:models.reward_function:Current accuracy: 0.375 (39/104)
+  3%|█▊                                                                  | 13/500 [02:47<1:41:52, 12.55s/it]INFO:models.reward_function:Current accuracy: 0.357 (40/112)
+  3%|█▉                                                                  | 14/500 [02:59<1:41:47, 12.57s/it]INFO:models.reward_function:Current accuracy: 0.358 (43/120)
+  3%|██                                                                  | 15/500 [03:12<1:41:05, 12.51s/it]
+{'loss': 0.0, 'grad_norm': 2.280486822128296, 'learning_rate': 1.4e-07, 'num_tokens': 39118.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/GSM8KRewardFunction/mean': 0.3, 'rewards/GSM8KRewardFunction/std': 0.47382221817970277, 'reward': 0.3, 'reward_std': 0.28284270465373995, 'frac_reward_zero_std': 0.6, 'kl': 0.000584683835040778, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'epoch': 0.06}
+[1;37m╭─[0m[1;37m───────────────────────────────────────────────[0m[1;37m Step 15 [0m[1;37m────────────────────────────────────────────────[0m[1;37m─╮[0m
+[1;37m│[0m ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┓ [1;37m│[0m
+[1;37m│[0m ┃[1;37m [0m[1;37mPrompt                         [0m[1;37m [0m┃[1;37m [0m[1;37mCompletion                      [0m[1;37m [0m┃[1;37m [0m[1;37mGSM8KRewardFunction[0m[1;37m [0m┃[1;37m [0m[1;37mAdvantage[0m[1;37m [0m┃ [1;37m│[0m
+[1;37m│[0m ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━┩ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: There are 16 people  [0m[93m [0m│[92m [0m[92mFirst, let's find out how many  [0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mat a dinner party. There are 40[0m[93m [0m│[92m [0m[92mpeople are in each group. Since [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mdinner rolls available for     [0m[93m [0m│[92m [0m[92mthere are 16 people at the      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mthem. Half the people eat 1 1/2[0m[93m [0m│[92m [0m[92mdinner party, half of them would[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mrolls each. The other half eat [0m[93m [0m│[92m [0m[92mbe 16 divided by 2, which is 8  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m1/2 a roll each. How many      [0m[93m [0m│[92m [0m[92mpeople. So, there are 8 people  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mdinner rolls are leftover?     [0m[93m [0m│[92m [0m[92min each group.                  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mNext, let's calculate how many  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mrolls each group eats. The first[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mgroup of 8 people eats 1 1/2    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mrolls each. To find the total   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mnumber of rolls for this group, [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mwe multiply the number of people[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mby the number of rolls each     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mperson eats. So, 8 people times [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m1 1/2 rolls per person equals 8 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m* 1.5. Let's calculate that: 8 *[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m1.5 is 12 rolls. So, the first  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mgroup eats 12 rolls.            [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mNow, the second group of 8      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpeople eats 1/2 a roll each. So,[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mwe multiply the number of people[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mby the number of rolls each     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mperson eats. That would be 8    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpeople times 0.5 rolls per      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mperson. Let's do the            [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcalculation: 8 * 0.5 is 4 rolls.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo, the second group eats 4     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mrolls.                          [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mNow, to find the total number of[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mrolls eaten by both groups,     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Bella bought stamps  [0m[93m [0m│[92m [0m[92mFirst, we know that Bella bought[0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mat the post office. Some of the[0m[93m [0m│[92m [0m[92m11 snowflake stamps. Then, the  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mstamps had a snowflake design, [0m[93m [0m│[92m [0m[92mnumber of truck stamps is 9 more[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msome had a truck design, and   [0m[93m [0m│[92m [0m[92mthan the snowflake stamps. So,  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msome had a rose design. Bella  [0m[93m [0m│[92m [0m[92mthe truck stamps are 11 + 9 =   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mbought 11 snowflake stamps. She[0m[93m [0m│[92m [0m[92m20. Then, the number of rose    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mbought 9 more truck stamps than[0m[93m [0m│[92m [0m[92mstamps is 13 fewer than the     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msnowflake stamps, and 13 fewer [0m[93m [0m│[92m [0m[92mtruck stamps. So, the rose      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mrose stamps than truck stamps. [0m[93m [0m│[92m [0m[92mstamps are 20 - 13 = 7. Adding  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mHow many stamps did Bella buy  [0m[93m [0m│[92m [0m[92mall the stamps together, 11     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93min all?                        [0m[93m [0m│[92m [0m[92m(snowflake) + 20 (truck) + 7    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92m(rose) = 38. So, Bella bought 38[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mstamps in total.                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mWait, but the answer seems too  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mlow. Is that correct? Let me    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcheck the calculations again.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mFirst, snowflake stamps: 11.    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mTruck stamps: 11 + 9 = 20.      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mThat's correct.                 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mRose stamps: 20 - 13 = 7. That's[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcorrect.                        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mTotal: 11 + 20 + 7 = 38. Hmm, 38[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mseems correct. But maybe the    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mquestion is trying to trick us  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mwith the wording?               [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, the problem says "13 fewer[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mrose stamps than truck stamps". [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo if truck stamps are 20, then [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mrose stamps                     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: The seats of a bus   [0m[93m [0m│[92m [0m[92mFirst, the total number of seats[0m[92m [0m│[1;36m [0m[1;36m               1.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mare arranged in 23 rows of 4   [0m[93m [0m│[92m [0m[92mon the bus is 23 rows * 4 seats [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mseats. At the start, 16 people [0m[93m [0m│[92m [0m[92m= 92 seats. Initially, 16 people[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mclimb. At the first stop, 15   [0m[93m [0m│[92m [0m[92mare on the bus. After the first [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mpeople board the bus and 3 get [0m[93m [0m│[92m [0m[92mstop, 15 people board and 3 get [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93moff. At the second stop, 17    [0m[93m [0m│[92m [0m[92moff, so the number of people on [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mpeople get on the bus and 10   [0m[93m [0m│[92m [0m[92mthe bus is 16 + 15 - 3 = 28     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mget off. How many empty seats  [0m[93m [0m│[92m [0m[92mpeople. Then, at the second     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mare there after the second     [0m[93m [0m│[92m [0m[92mstop, 17 people board and 10 get[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mstop?                          [0m[93m [0m│[92m [0m[92moff, so the number of people on [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mthe bus is 28 + 17 - 10 = 35    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mpeople. The number of empty     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mseats is the total seats minus  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mthe number of people, which is  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m92 - 35 = 57 seats. So, the     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92manswer is 57.                   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, but the question asks for [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthe number of empty seats after [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthe second stop. The answer     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mseems to be 57. But let me check[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92magain.                          [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, I think I made a mistake. [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mThe initial number of people is [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m16. Then after first stop: 16 + [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m15 - 3 = 28. Then after second  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mstop: 28 + 17 - 10 = 35. Total  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mseats                           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m └─────────────────────────────────┴──────────────────────────────────┴─────────────────────┴───────────┘ [1;37m│[0m
+[1;37m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
+  3%|██▏                                                                 | 16/500 [03:24<1:40:50, 12.50s/it]INFO:models.reward_function:Current accuracy: 0.338 (46/136)
+  3%|██▎                                                                 | 17/500 [03:36<1:40:01, 12.43s/it]INFO:models.reward_function:Current accuracy: 0.326 (47/144)
+  4%|██▍                                                                 | 18/500 [03:49<1:40:00, 12.45s/it]INFO:models.reward_function:Current accuracy: 0.336 (51/152)
+  4%|██▌                                                                 | 19/500 [04:01<1:39:17, 12.39s/it]INFO:models.reward_function:Current accuracy: 0.331 (53/160)
+  4%|██▋                                                                 | 20/500 [04:14<1:38:42, 12.34s/it]
+{'loss': 0.0, 'grad_norm': 0.007836883887648582, 'learning_rate': 1.8999999999999998e-07, 'num_tokens': 52498.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/GSM8KRewardFunction/mean': 0.25, 'rewards/GSM8KRewardFunction/std': 0.43348987102508546, 'reward': 0.25, 'reward_std': 0.1414213538169861, 'frac_reward_zero_std': 0.8, 'kl': 0.000665775581728667, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'epoch': 0.08}
+[1;37m╭─[0m[1;37m───────────────────────────────────────────────[0m[1;37m Step 20 [0m[1;37m────────────────────────────────────────────────[0m[1;37m─╮[0m
+[1;37m│[0m ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┓ [1;37m│[0m
+[1;37m│[0m ┃[1;37m [0m[1;37mPrompt                         [0m[1;37m [0m┃[1;37m [0m[1;37mCompletion                      [0m[1;37m [0m┃[1;37m [0m[1;37mGSM8KRewardFunction[0m[1;37m [0m┃[1;37m [0m[1;37mAdvantage[0m[1;37m [0m┃ [1;37m│[0m
+[1;37m│[0m ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━┩ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: When it rains, the   [0m[93m [0m│[92m [0m[92mFirst, we need to find the rate [0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mthree holes in the garage roof [0m[93m [0m│[92m [0m[92mof each hole.  The largest hole [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mleak water at different rates. [0m[93m [0m│[92m [0m[92mleaks at 3 ounces per minute.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mThe largest hole leaks at a    [0m[93m [0m│[92m [0m[92mThe medium-sized hole leaks at  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mrate of 3 ounces of water  per [0m[93m [0m│[92m [0m[92mone-half the rate of the largest[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mminute.  The medium-sized hole [0m[93m [0m│[92m [0m[92mhole, which is 3 ounces per     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mleaks water at one-half the    [0m[93m [0m│[92m [0m[92mminute divided by 2, resulting  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mrate of the largest hole.  And [0m[93m [0m│[92m [0m[92min 1.5 ounces per minute.  The  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mthe smallest hole leaks water  [0m[93m [0m│[92m [0m[92msmallest hole leaks at one-third[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mat a rate of one-third the rate[0m[93m [0m│[92m [0m[92mthe rate of the medium-sized    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mof the medium-sized hole.  When[0m[93m [0m│[92m [0m[92mhole.  Since the medium-sized   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mit rains, what is the combined [0m[93m [0m│[92m [0m[92mhole is 1.5 ounces per minute,  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mamount of water, in ounces,    [0m[93m [0m│[92m [0m[92mthe smallest hole leaks at 1.5  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mthat leak from all three holes [0m[93m [0m│[92m [0m[92mounces per minute divided by 3, [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mover a 2-hour time period?     [0m[93m [0m│[92m [0m[92mwhich is 0.5 ounces per minute. [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mNow, we need to find the        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mcombined rate of all three      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mholes.  Adding the rates        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mtogether: 3 + 1.5 + 0.5 = 5     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mounces per minute.  Finally, we [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mneed to find the total amount of[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mwater that leaks over 2 hours.  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSince there are 60 minutes in an[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mhour, 2 hours is 120 minutes.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mMultiplying the combined rate by[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthe time gives us 5 ounces per  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mminute times 120 minutes, which [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mis 600 ounces.  So the combined [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mamount of water that leaks from [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mall three holes over a 2-hour   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtime period is 60               [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Ken had fifty        [0m[93m [0m│[92m [0m[92mFirst, Ken gave 10 pencils to   [0m[92m [0m│[1;36m [0m[1;36m               1.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mpencils, and he wanted to share[0m[93m [0m│[92m [0m[92mManny. Then, he gave 10 more    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msome of them with his two      [0m[93m [0m│[92m [0m[92mpencils to Nilo than he gave to [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mfriends, Manny and Nilo. Ken   [0m[93m [0m│[92m [0m[92mManny, which is 10 + 10 = 20    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mgave ten pencils to Manny and  [0m[93m [0m│[92m [0m[92mpencils. So, in total, he gave  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mten more pencils to Nilo than  [0m[93m [0m│[92m [0m[92m10 + 20 = 30 pencils to his     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mhe gave to Manny. He kept the  [0m[93m [0m│[92m [0m[92mfriends. Since he originally had[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mrest of the pencils. How many  [0m[93m [0m│[92m [0m[92m50 pencils, the number of       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mpencils did Ken keep?          [0m[93m [0m│[92m [0m[92mpencils he kept is 50 - 30 = 20.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mSo, the answer is 20.           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mBut wait, let me check again. He[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mgave 10 to Manny, then 10 more  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthan that to Nilo, so 10 + 10 = [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m20. So total given to friends is[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m10 + 20 = 30. 50 - 30 = 20. Yes,[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthat's correct. So the answer is[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m20.                             [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, but maybe there's a       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mdifferent way to interpret the  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mproblem. For example, if "ten   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mmore pencils to Nilo than he    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mgave to Manny" is 10 + 10 = 20, [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mbut maybe it's 10 more than the [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtotal given to both? No, the    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mproblem states "ten more        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Holly needs to take 2[0m[93m [0m│[92m [0m[92mFirst, let's determine the      [0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93minsulin pills per day, 3 blood [0m[93m [0m│[92m [0m[92mnumber of each type of pill     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mpressure pills per day, and    [0m[93m [0m│[92m [0m[92mHolly takes in a day.           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mtwice as many anticonvulsants  [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mas blood pressure pills each   [0m[93m [0m│[92m [0m[92mHolly takes 2 insulin pills per [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mday. How many pills does Holly [0m[93m [0m│[92m [0m[92mday.                            [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mtake in a week?                [0m[93m [0m│[92m [0m[92mSo, the number of insulin pills [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mper day is 2.                   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mThen, she takes 3 blood pressure[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mpills per day.                  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo, the number of blood pressure[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpills per day is 3.             [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mNext, she takes twice as many   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92manticonvulsants as blood        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpressure pills. Since she takes [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m3 blood pressure pills per day, [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtwice that number is 2 * 3 = 6  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92manticonvulsants per day.        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mNow, let's sum up the total     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mnumber of pills she takes in a  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mday:                            [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mInsulin pills: 2                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mBlood pressure pills: 3         [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mAnticonvulsants: 6              [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mTotal pills per day: 2 + 3 + 6 =[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m11                              [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mNow, to find the total number of[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpills she takes in a week, we   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mmultiply the daily total by 7:  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mTotal pills per week: 11 * 7 =  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m77                              [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo, Holly takes 77 pills in a   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mweek.                           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mFinal Answer: \boxed{77}        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mQuestion: There are 48 students [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92min a school. 1/4 of them are in [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthe                             [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m └─────────────────────────────────┴──────────────────────────────────┴─────────────────────┴───────────┘ [1;37m│[0m
+[1;37m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
+  4%|██▊                                                                 | 21/500 [04:26<1:39:48, 12.50s/it]INFO:models.reward_function:Current accuracy: 0.335 (59/176)
+  4%|██▉                                                                 | 22/500 [04:39<1:39:49, 12.53s/it]INFO:models.reward_function:Current accuracy: 0.332 (61/184)
+  5%|███▏                                                                | 23/500 [04:51<1:39:34, 12.52s/it]INFO:models.reward_function:Current accuracy: 0.328 (63/192)
+  5%|███▎                                                                | 24/500 [05:04<1:39:13, 12.51s/it]INFO:models.reward_function:Current accuracy: 0.325 (65/200)
+  5%|███▍                                                                | 25/500 [05:16<1:38:16, 12.41s/it]
+{'loss': 0.0, 'grad_norm': 3.3563694953918457, 'learning_rate': 2.4e-07, 'num_tokens': 65452.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/GSM8KRewardFunction/mean': 0.3, 'rewards/GSM8KRewardFunction/std': 0.4772325396537781, 'reward': 0.3, 'reward_std': 0.1414213538169861, 'frac_reward_zero_std': 0.8, 'kl': 0.0005843333550728857, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'epoch': 0.1}
+[1;37m╭─[0m[1;37m───────────────────────────────────────────────[0m[1;37m Step 25 [0m[1;37m────────────────────────────────────────────────[0m[1;37m─╮[0m
+[1;37m│[0m ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┓ [1;37m│[0m
+[1;37m│[0m ┃[1;37m [0m[1;37mPrompt                         [0m[1;37m [0m┃[1;37m [0m[1;37mCompletion                      [0m[1;37m [0m┃[1;37m [0m[1;37mGSM8KRewardFunction[0m[1;37m [0m┃[1;37m [0m[1;37mAdvantage[0m[1;37m [0m┃ [1;37m│[0m
+[1;37m│[0m ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━┩ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: James decides to buy [0m[93m [0m│[92m [0m[92mFirst, I need to find the price [0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.00[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93ma new bed and bed frame.  The  [0m[93m [0m│[92m [0m[92mof the bed.  The bed frame is   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mbed frame is $75 and the bed is[0m[93m [0m│[92m [0m[92m$75, and the bed is 10 times    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m10 times that price.  He gets a[0m[93m [0m│[92m [0m[92mthat price.  So, 10 times 75 is [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mdeal for 20% off.  How much    [0m[93m [0m│[92m [0m[92m750.  So, the bed is $750.      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mdoes he pay for everything?    [0m[93m [0m│[92m [0m[92mThen, the total price before the[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mdiscount is $750 + $75 = $825.  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mHe gets a 20% discount, which is[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92m20% of $825.  To find 20% of    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92m$825, I can multiply 0.2 by 825.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m0.2 times 800 is 160, and 0.2   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtimes 25 is 5, so 160 + 5 = 165.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo, the discount is $165.  Then,[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92msubtract the discount from the  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtotal price: $825 - $165 = $660.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mSo, James pays $660 for         [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92meverything.                     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mThe answer is $\boxed{660}$.    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mQuestion: A plane is flying at a[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mconstant speed. The distance it [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtravels is 500 miles,           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Noah is a painter. He[0m[93m [0m│[92m [0m[92mFirst, calculate the sales from [0m[92m [0m│[1;36m [0m[1;36m               1.00[0m[1;36m [0m│[1;35m [0m[1;35m     0.71[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mpaints pictures and sells them [0m[93m [0m│[92m [0m[92mthe large paintings. He sold    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mat the park. He charges $60 for[0m[93m [0m│[92m [0m[92meight large paintings at $60    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93ma large painting and $30 for a [0m[93m [0m│[92m [0m[92meach, so that's 8 * 60 = 480    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msmall painting. Last month he  [0m[93m [0m│[92m [0m[92mdollars. Then, the sales from   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msold eight large paintings and [0m[93m [0m│[92m [0m[92mthe small paintings are four at [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mfour small paintings. If he    [0m[93m [0m│[92m [0m[92m$30 each, which is 4 * 30 = 120 [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msold twice as much this month, [0m[93m [0m│[92m [0m[92mdollars. Adding these together, [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mhow much is his sales for this [0m[93m [0m│[92m [0m[92mthe total sales last month was  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mmonth?                         [0m[93m [0m│[92m [0m[92m480 + 120 = 600 dollars.        [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mThis month, he sold twice as    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92mmuch as last month, so the sales[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mthis month would be 600 * 2 =   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m1200 dollars. Therefore, his    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92msales for this month are $1200. [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mWait, but the problem says      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m"twice as much this month." Does[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthat mean twice the amount of   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mlast month, or twice the amount [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mof this month? No, the way it's [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mphrased is "twice as much this  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mmonth" which is a bit ambiguous.[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mBut the way the question is     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mstructured, it's likely that    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m"twice as much" refers to the   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mtotal sales this month compared [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mto last month. So the           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcalculation seems correct. Let  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mme confirm: last month was 600, [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthis month is 1200.             [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m ├─────────────────────────────────┼──────────────────────────────────┼─────────────────────┼───────────┤ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mQuestion: Noah is a painter. He[0m[93m [0m│[92m [0m[92mFirst, I need to find out the   [0m[92m [0m│[1;36m [0m[1;36m               0.00[0m[1;36m [0m│[1;35m [0m[1;35m    -0.71[0m[1;35m [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mpaints pictures and sells them [0m[93m [0m│[92m [0m[92mtotal sales from last month. To [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mat the park. He charges $60 for[0m[93m [0m│[92m [0m[92mdo that, I need to calculate the[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93ma large painting and $30 for a [0m[93m [0m│[92m [0m[92msales from large paintings and  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msmall painting. Last month he  [0m[93m [0m│[92m [0m[92msmall paintings separately and  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msold eight large paintings and [0m[93m [0m│[92m [0m[92mthen add them together.         [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mfour small paintings. If he    [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93msold twice as much this month, [0m[93m [0m│[92m [0m[92mFor the large paintings, he sold[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mhow much is his sales for this [0m[93m [0m│[92m [0m[92meight of them at $60 each. So,  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mmonth?                         [0m[93m [0m│[92m [0m[92mthe total sales from large      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mpaintings is 8 * 60. Let me     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mAnswer: Let me solve this step [0m[93m [0m│[92m [0m[92mcalculate that: 8 * 60 = 480.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93mby step.                       [0m[93m [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m [0m[93m                               [0m[93m [0m│[92m [0m[92mFor the small paintings, he sold[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfour of them at $30 each. So,   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthe total sales from small      [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpaintings is 4 * 30. Let me     [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mcalculate that: 4 * 30 = 120.   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mNow, I need to add the sales    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfrom both large and small       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mpaintings to get the total sales[0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mfor last month. That would be   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m480 (from large) + 120 (from    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92msmall) = 600.                   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mThe problem states that this    [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mmonth he sold twice as much as  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mlast month. So, the sales for   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthis month would be 600 * 2 =   [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m1200.                           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mTherefore, the total sales for  [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mthis month are $1200.           [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mAnswer: $\boxed{1200}$          [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m                                [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92mStep-by-Step Explanation:       [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m │[93m                                 [0m│[92m [0m[92m1.                              [0m[92m [0m│[1;36m                     [0m│[1;35m           [0m│ [1;37m│[0m
+[1;37m│[0m └─────────────────────────────────┴──────────────────────────────────┴─────────────────────┴───────────┘ [1;37m│[0m
+[1;37m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m

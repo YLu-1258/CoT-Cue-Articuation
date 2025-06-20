@@ -1,0 +1,1 @@
+{"profiling/Time taken: GRPOTrainer._prepare_inputs":29.391833206638694,"_wandb":{"runtime":35},"profiling/Time taken: GRPOTrainer.GSM8KRewardFunction":0.0026834141463041306,"_timestamp":1.7503964855443602e+09,"_runtime":30.067683903,"_step":1,"train/global_step":0}

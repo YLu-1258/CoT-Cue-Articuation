@@ -1,0 +1,15 @@
+{"time":"2025-06-20T04:08:20.268026032Z","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/data/kevinchu/CoT-Cue-Articuation/trl-fine-tuning/wandb/run-20250620_040820-aijtadyr/logs/debug-core.log"}
+{"time":"2025-06-20T04:08:22.480641474Z","level":"INFO","msg":"stream: created new stream","id":"aijtadyr"}
+{"time":"2025-06-20T04:08:22.480723683Z","level":"INFO","msg":"stream: started","id":"aijtadyr"}
+{"time":"2025-06-20T04:08:22.480774122Z","level":"INFO","msg":"writer: Do: started","stream_id":"aijtadyr"}
+{"time":"2025-06-20T04:08:22.480816882Z","level":"INFO","msg":"handler: started","stream_id":"aijtadyr"}
+{"time":"2025-06-20T04:08:22.480890961Z","level":"INFO","msg":"sender: started","stream_id":"aijtadyr"}
+{"time":"2025-06-20T04:08:22.748405432Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-20T04:08:54.050431167Z","level":"INFO","msg":"stream: closing","id":"aijtadyr"}
+{"time":"2025-06-20T04:08:54.050469957Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-20T04:08:54.050532446Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-20T04:08:54.386205132Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-06-20T04:08:54.531246134Z","level":"INFO","msg":"sender: closed","stream_id":"aijtadyr"}
+{"time":"2025-06-20T04:08:54.531152415Z","level":"INFO","msg":"handler: closed","stream_id":"aijtadyr"}
+{"time":"2025-06-20T04:08:54.531224455Z","level":"INFO","msg":"writer: Close: closed","stream_id":"aijtadyr"}
+{"time":"2025-06-20T04:08:54.531323324Z","level":"INFO","msg":"stream: closed","id":"aijtadyr"}

@@ -12,37 +12,52 @@ from pathlib import Path
 # Add src directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from data_generation.formatters import BaseFormatter, StanfordProfessorFormatter, FewShotSquaresFormatter
+from data_generation.formatters import BaseMCQFormatter, StanfordProfessorFormatter, FewShotSquaresFormatter, StanfordProfessorGSM8KFormatter
 from enums.cue import Cue
 
 
 class DataGenerator:
     """Handles generation and validation of datasets."""
     
-    def __init__(self, output_dir: str = "data/prompts"):
+    def __init__(self, output_dir: str = "data/prompts", dataset_name: str = "mmlu"):
         """Initialize data generator with output directory."""
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
-        
-        self.formatters = {
-            Cue.STANFORD_PROFESSOR: StanfordProfessorFormatter(),
-            Cue.FEW_SHOT_BLACK_SQUARES: FewShotSquaresFormatter()
-        }
+        self.dataset = dataset_name
+        if dataset_name == "mmlu":
+            self.formatters = {
+                Cue.STANFORD_PROFESSOR: StanfordProfessorFormatter(),
+                Cue.FEW_SHOT_BLACK_SQUARES: FewShotSquaresFormatter()
+            }
+        elif dataset_name == "gsm8k":
+            self.formatters = {
+                Cue.STANFORD_PROFESSOR: StanfordProfessorGSM8KFormatter(split="main")
+            }
     
     def generate_dataset(self, cue: Cue, filename: Optional[str] = None) -> Path:
         """Generate dataset for a specific cue type."""
         if filename is None:
             filename = f"{cue.value}.jsonl"
         
-        output_path = self.output_dir / filename
-        formatter = self.formatters[cue]
+        # build the full path
+        output_path: Path = self.output_dir / self.dataset / filename
+        
+        # ensure parent dirs exist
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        try:
+            formatter = self.formatters[cue]
+        except KeyError:
+            raise ValueError(f"No formatter found for cue: {cue.display_name}")
         
         print(f"Generating {cue.display_name} dataset...")
         
-        with open(output_path, "w") as f:
+        # opening in "w" now automatically creates (or truncates) the file
+        with output_path.open("w") as f:
             for entry in formatter.dataset:
                 data_entry = formatter.create_entry(entry)
                 f.write(json.dumps(data_entry) + "\n")
+
         
         print(f"✅ Generated {output_path}")
         return output_path
@@ -52,7 +67,7 @@ class DataGenerator:
         print("=== GENERATING ALL DATASETS ===")
         
         results = {}
-        for cue in Cue:
+        for cue in self.formatters.keys():
             results[cue] = self.generate_dataset(cue)
         
         print("✅ All datasets generated successfully!\n")

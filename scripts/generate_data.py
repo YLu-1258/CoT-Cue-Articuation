@@ -20,9 +20,9 @@ def main():
     """Generate and validate all datasets."""
     print("🚀 CoT Cue Articulation - Data Generation")
     print("=" * 50)
-    
+    dataset = input("What dataset do you want to generate? (mmlu/gsm8k) [default: mmlu]: ").strip() or "mmlu"
     # Initialize data generator
-    generator = DataGenerator()
+    generator = DataGenerator(dataset_name=dataset)
     
     # Generate all datasets
     generated_files = generator.generate_all_datasets()

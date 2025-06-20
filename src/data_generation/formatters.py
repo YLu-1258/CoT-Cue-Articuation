@@ -187,11 +187,11 @@ Label: (A)
 class BaseGSM8KFormatter(ABC):
     """Base class for GSM8K (free-response) prompt formatters."""
     
-    def __init__(self, cue: Cue, split: str = "main"):
+    def __init__(self, cue: Cue, split: str = "train"):
         self.cue = cue
         # GSM8K comes as a jsonlines of {"question":..., "answer": "..."}
         print(split)
-        self.dataset = load_dataset("openai/gsm8k", split)["train"]
+        self.dataset = load_dataset("openai/gsm8k", "main")[split]
 
     def _extract_numeric_answer(self, raw: str) -> int:
         """
@@ -223,13 +223,14 @@ class BaseGSM8KFormatter(ABC):
         """
         pass
     
-    def create_entry(self, entry: Dict) -> Dict:
+    def create_entry(self, entry: Dict, question_id : int) -> Dict:
         unbiased_q = self.format_unbiased_prompt(entry)
         correct = self._extract_numeric_answer(entry["answer"])
         
         biased_q, biased_ans = self.format_biased_prompt(entry)
         
         return {
+            "question_id": question_id,
             "unbiased_question": unbiased_q,
             "biased_question": biased_q,
             "biased_answer": str(biased_ans),

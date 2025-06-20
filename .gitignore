@@ -1,8 +1,3 @@
 *.pyc
-view_some_responses.ipynb
 vllm/logs/*
-qwen3_trl_requirements.txt
-# fine-tuning/evaluate_grpo_model.py
-# fine-tuning/outputs/*
-# fine-tuning/logs/*
-trl-fine-tuning
+verl-fine-tuning

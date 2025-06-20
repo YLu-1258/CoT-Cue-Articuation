@@ -1,0 +1,24 @@
+# Core TRL with vLLM support
+trl[vllm]>=0.18.0
+
+# vLLM for fast inference
+vllm>=0.8.0
+
+# Additional dependencies for the GRPO training setup
+transformers>=4.40.0
+datasets>=2.0.0
+torch>=2.0.0
+accelerate>=0.20.0
+wandb
+peft>=0.4.0
+
+# For HTTP requests to vLLM server
+requests>=2.25.0
+
+# For better logging and progress bars
+rich>=10.0.0
+tqdm>=4.60.0
+
+# For GSM8K evaluation
+scikit-learn>=1.0.0
+numpy>=1.21.0 

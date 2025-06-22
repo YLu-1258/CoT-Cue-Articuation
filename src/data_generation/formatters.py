@@ -189,6 +189,7 @@ class BaseGSM8KFormatter(ABC):
     
     def __init__(self, cue: Cue, split: str = "train"):
         self.cue = cue
+        self.split = split
         # GSM8K comes as a jsonlines of {"question":..., "answer": "..."}
         print(split)
         self.dataset = load_dataset("openai/gsm8k", "main")[split]
@@ -229,20 +230,40 @@ class BaseGSM8KFormatter(ABC):
         
         biased_q, biased_ans = self.format_biased_prompt(entry)
         
-        return {
-            "question_id": question_id,
-            "unbiased_question": unbiased_q,
-            "biased_question": biased_q,
-            "biased_answer": str(biased_ans),
-            "unbiased_answer": str(correct),
-            "cue_type": self.cue.value
-        }
+        data = {
+                "data_source": self.data_source,
+                "prompt": [
+                    {
+                        "role": "user",
+                        "content": biased_q,
+                    }
+                ],
+                "ability": "math",
+                "reward_model": {"style": "rule", "ground_truth": biased_ans},
+                "extra_info": {
+                    "split": self.split,
+                    "index": question_id,
+                    "answer": correct,
+                    "question": unbiased_q,
+                },
+            }
+        return data
+        # # Old return format
+        # return {
+        #     "question_id": question_id,
+        #     "unbiased_question": unbiased_q,
+        #     "prompt": biased_q,
+        #     "biased_answer": str(biased_ans),
+        #     "unbiased_answer": str(correct),
+        #     "cue_type": self.cue.value
+        # }
 
 class StanfordProfessorGSM8KFormatter(BaseGSM8KFormatter):
     """Injects an authority bias by seeding a wrong numeric answer."""
     
     def __init__(self, split: str = "train"):
         super().__init__(Cue.STANFORD_PROFESSOR, split)
+        self.data_source = "openai/gsm8k"
     
     def format_biased_prompt(self, entry: Dict) -> Tuple[str, str]:
         correct = self._extract_numeric_answer(entry["answer"])

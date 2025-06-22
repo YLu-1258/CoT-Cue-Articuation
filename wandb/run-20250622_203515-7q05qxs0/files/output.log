@@ -1,0 +1,19 @@
+Checkpoint tracker file does not exist: /data/alexl/CoT-Cue-Articuation/checkpoints/verl_grpo_example_gsm8k/qwen3_1_7b_function_rm/latest_checkpointed_iteration.txt
+Training from scratch
+test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': False, 'validate': True}
+validation generation end
+[prompt] user
+Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market? Let's think step by step and output the final answer after "####".
+assistant
+
+[response] <think>
+Okay, let's see. Janet has ducks that lay eggs. The problem says she has 16 eggs per day. Then she eats three for breakfast every morning. Wait, but does that mean she eats three eggs each morning? But the question is about how much she makes at the farmers' market. So maybe the three eggs she eats in the morning are not sold. Then she bakes muffins every day with four eggs. Hmm, but the muffins are made with four eggs? Or does that mean she uses four eggs per muffin? Wait, the problem says she bakes muffins for her friends every day with four. Maybe that's a typo? Or maybe it's saying she uses four eggs per muffin? But the problem is about how much she makes at the farmers' market. So the eggs she sells are the ones that are not used for breakfast or muffins. Let me parse this again.
+
+Janet's ducks lay 16 eggs per day. She eats three for breakfast every morning. Wait, does that mean she eats three eggs each morning? But if she eats three eggs every morning, but the problem says she eats three for breakfast every morning. So maybe she eats three eggs each morning, but does that mean she eats three eggs every day? Because she has a daily routine. So if she eats three eggs each morning, but the problem says she eats three for breakfast every morning. So maybe she eats three eggs each day? But the problem says she eats three for breakfast every morning. So maybe she eats three eggs each morning, but since she has a daily routine, maybe she eats three eggs each day? So that would be three eggs per day. But then she uses four eggs for baking muffins? Wait, the problem says she bakes muffins for her friends every day with four. Maybe that's a typo, but maybe it's saying she uses four eggs per muffin? Or maybe she uses four eggs in total for the muffins? Wait, the problem says "bakes muffins for her friends every day with four." Maybe that's a translation issue. Maybe it's supposed to say she uses four eggs per muffin? Or maybe she uses four eggs in total for the muffins? But the problem is not clear. Wait, the problem says she bakes muffins for her friends every day with four. Maybe that's a typo, and it's supposed to say she uses four eggs per muffin? Or maybe she uses four eggs in total
+[ground_truth] 18
+[score] 0.0
+len reward_extra_infos_dict['reward']: 1319
+("Initial validation metrics: {'val-core/openai/gsm8k/reward/mean@1': "
+ 'np.float64(0.002274450341167551)}')
+step:0 - val-core/openai/gsm8k/reward/mean@1:0.002
+Training Progress:   0%|          | 0/14010 [00:00<?, ?it/s]

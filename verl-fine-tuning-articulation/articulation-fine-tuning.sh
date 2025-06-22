@@ -6,7 +6,7 @@ export FLASH_ATTENTION_SKIP_CUDA_CHECK=TRUE
 export DISABLE_FLASH_ATTN=1
 export PYTHONUNBUFFERED=1
 export VLLM_TARGET_DEVICE=cuda
-export CUDA_VISIBLE_DEVICES=4
+export CUDA_VISIBLE_DEVICES=3,4,5,6
 
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
@@ -37,8 +37,8 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.rollout.tensor_model_parallel_size=1 \
     critic.ppo_micro_batch_size_per_gpu=1 \
     actor_rollout_ref.rollout.name=vllm \
-    actor_rollout_ref.rollout.gpu_memory_utilization=0.6 \
-    actor_rollout_ref.rollout.n=5 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.9 \
+    actor_rollout_ref.rollout.n=1 \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=1 \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     algorithm.use_kl_in_reward=False \
@@ -47,6 +47,7 @@ python3 -m verl.trainer.main_ppo \
     trainer.project_name='verl_grpo_qwen3_1_7b_gsm8k_cuda115' \
     trainer.experiment_name='qwen3_1_7b_grpo_cuda115_optimized' \
     trainer.n_gpus_per_node=1 \
+    +ray_init.num_gpus=4 \
     trainer.nnodes=1 \
     trainer.save_freq=20 \
     trainer.test_freq=5 \

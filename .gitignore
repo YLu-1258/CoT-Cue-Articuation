@@ -4,3 +4,4 @@ verl-fine-tuning
 verl-fine-tuning-articulation/outputs/*
 verl-fine-tuning-articulation/wandb/*
 outputs/*
+wandb/*

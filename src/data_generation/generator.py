@@ -12,7 +12,7 @@ from pathlib import Path
 # Add src directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from data_generation.formatters import BaseMCQFormatter, StanfordProfessorFormatter, FewShotSquaresFormatter, StanfordProfessorGSM8KFormatter
+from data_generation.formatters import BaseMCQFormatter, StanfordProfessorFormatter, FewShotSquaresFormatter, StanfordProfessorGSM8KFormatter, StanfordProfessorCorrectnessGSM8KFormatter
 from enums.cue import Cue
 
 
@@ -33,6 +33,10 @@ class DataGenerator:
         elif dataset_name == "gsm8k":
             self.formatters = {
                 Cue.STANFORD_PROFESSOR: StanfordProfessorGSM8KFormatter(split=split)
+            }
+        elif dataset_name == "gsm8k-correctness":
+            self.formatters = {
+                Cue.STANFORD_PROFESSOR: StanfordProfessorCorrectnessGSM8KFormatter()
             }
     
     def generate_dataset(self, cue: Cue, filename: Optional[str] = None) -> Path:

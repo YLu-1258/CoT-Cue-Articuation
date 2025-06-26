@@ -65,9 +65,9 @@ verl-fine-tuning-articulation/wandb/*
 
 # Data files (often large or sensitive)
 *.parquet
-*.csv
-*.jsonl
-*.json
+# *.csv
+# *.jsonl
+# *.json
 !**/config/*.json
 !**/config/*.jsonl
 
@@ -117,5 +117,5 @@ flashinfer_python-*.whl
 
 *.log
 
-cehckpoints/
+checkpoints/
 verl/

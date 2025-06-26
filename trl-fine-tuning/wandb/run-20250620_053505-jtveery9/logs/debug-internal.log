@@ -1,7 +1,0 @@
-{"time":"2025-06-20T05:35:05.946638206Z","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/data/kevinchu/CoT-Cue-Articuation/trl-fine-tuning/wandb/run-20250620_053505-jtveery9/logs/debug-core.log"}
-{"time":"2025-06-20T05:35:08.468733746Z","level":"INFO","msg":"stream: created new stream","id":"jtveery9"}
-{"time":"2025-06-20T05:35:08.468816725Z","level":"INFO","msg":"stream: started","id":"jtveery9"}
-{"time":"2025-06-20T05:35:08.468858004Z","level":"INFO","msg":"writer: Do: started","stream_id":"jtveery9"}
-{"time":"2025-06-20T05:35:08.468913004Z","level":"INFO","msg":"handler: started","stream_id":"jtveery9"}
-{"time":"2025-06-20T05:35:08.468977173Z","level":"INFO","msg":"sender: started","stream_id":"jtveery9"}
-{"time":"2025-06-20T05:35:08.716392358Z","level":"INFO","msg":"Starting system monitor"}

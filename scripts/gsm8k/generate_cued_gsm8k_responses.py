@@ -21,8 +21,8 @@ import re
 from tqdm import tqdm
 
 # Add src directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-sys.path.insert(0, str(Path(__file__).parent.parent / "verl"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "verl"))
 
 from llm.client import LLMClient
 from verl.utils.reward_score.gsm8k import extract_solution, compute_score

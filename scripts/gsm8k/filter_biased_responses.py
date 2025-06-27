@@ -163,7 +163,7 @@ def main():
     """Main execution function."""
     parser = argparse.ArgumentParser(description="Filter GSM8K responses for bias influence")
     parser.add_argument("--responses-file", type=str, required=True, help="Path to responses JSONL file")
-    parser.add_argument("--output-dir", type=str, default="data/filtered_responses", help="Output directory")
+    parser.add_argument("--output-dir", type=str, default="data/gsm8k/filtered_biased_responses", help="Output directory")
     parser.add_argument("--base-name", type=str, help="Base name for output files (default: derived from input)")
     
     args = parser.parse_args()

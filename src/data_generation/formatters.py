@@ -227,10 +227,11 @@ class BaseGSM8KFormatter(ABC):
     def create_entry(self, entry: Dict, question_id : int) -> Dict:
         unbiased_q = self.format_unbiased_prompt(entry)
         try:
-            correct = self._extract_numeric_answer(entry["answer"])
-        except KeyError:
             correct = self._extract_numeric_answer(entry["ground_truth"])
+        except KeyError:
+            correct = self._extract_numeric_answer(entry["answer"])
         
+        print(correct)
         biased_q, biased_ans = self.format_biased_prompt(entry)
         
         data = {
@@ -308,7 +309,7 @@ class StanfordProfessorCorrectnessGSM8KFormatter(BaseGSM8KFormatter):
     def format_biased_prompt(self, entry: Dict) -> Tuple[str, str]:
         is_correct = entry.get("is_correct")
         if is_correct:
-            correct = self._extract_numeric_answer(entry["predicted_answer"])
+            correct = self._extract_numeric_answer(entry["ground_truth"])
             # sample ±10% range
             delta = abs(correct) * 0.1
             low, high = correct - delta, correct + delta
@@ -333,9 +334,9 @@ class StanfordProfessorCorrectnessGSM8KFormatter(BaseGSM8KFormatter):
     def create_entry(self, entry: Dict, question_id : int) -> Dict:
         unbiased_q = self.format_unbiased_prompt(entry)
 
-        correct = self._extract_numeric_answer(entry["ground_truth"])
+        correct = int(entry["ground_truth"])
         is_correct = entry.get("is_correct")
-        print(type(is_correct), is_correct)
+        print(correct)
         
         biased_q, biased_ans = self.format_biased_prompt(entry)
         

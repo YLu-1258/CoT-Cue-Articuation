@@ -27,6 +27,10 @@ def main():
     parser.add_argument("--max-workers", type=int, help="Number of parallel workers")
     parser.add_argument("--cue", type=str, choices=[cue.value for cue in Cue], 
                        help="Evaluate responses for specific cue only")
+    parser.add_argument("--response-file", type=str, 
+                       help="Custom response file to evaluate")
+    parser.add_argument("--out", type=str, 
+                        help="output directory for evaluation results")
     
     args = parser.parse_args()
     
@@ -47,12 +51,17 @@ def main():
     max_workers = args.max_workers if args.max_workers else 8  # Default to 8 if not specified
     model_name = client.model_id.replace('/', '_').replace(':', '_')  # Clean model name for folder
     evaluator = ModelEvaluator(client, f"data/model_evaluation/{model_name}", max_workers)
+    if args.out:
+        evaluator = ModelEvaluator(client, args.out, max_workers)
     
     # Evaluate responses
     if args.cue:
         # Evaluate for specific cue
         cue = Cue(args.cue)
-        responses_file = Path("data/responses/filtered") / f"{cue.value}_responses_filtered.jsonl"
+        if args.response_file:
+            responses_file = Path(args.response_file)
+        else:
+            responses_file = Path("data/responses/filtered") / f"{cue.value}_responses_filtered.jsonl"
         
         if not responses_file.exists():
             print(f"❌ Responses file not found: {responses_file}")

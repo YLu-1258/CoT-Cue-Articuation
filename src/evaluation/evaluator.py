@@ -3,6 +3,7 @@
 import json
 import os
 import subprocess
+import traceback
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -129,11 +130,11 @@ class ModelEvaluator:
                     
                     except Exception as e:
                         print(f"❌ Q{question_id}/{total} exception: {e}")
-                        
+                        traceback.print_exc()
                         error_result = {
                             "question_id": question_id,
                             "cue": cue.value,
-                            "error": str(e),
+                            "error": str(e.__traceback__),
                             "status": "error"
                         }
                         f.write(json.dumps(error_result) + "\n")
@@ -257,10 +258,13 @@ class ModelEvaluator:
         """Evaluate a single response for cue articulation."""
         try:
             # Format evaluation prompt
+            b_response = self._extract_cot(response["response"]).strip()
+            if not response:
+                b_response = response.get("response", "").strip()
             prompt = EVALUATION_PROMPT_TEMPLATE.format(
                 cue_description=CUE_DESCRIPTIONS[cue.value],
                 cue_specific_cases=CUE_SPECIFIC_CASES[cue.value],
-                biased_response=self._extract_cot(response["biased_response"])
+                biased_response=b_response
             )
             
             # Get evaluation from model

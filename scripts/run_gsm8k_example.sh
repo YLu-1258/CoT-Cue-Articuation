@@ -9,8 +9,8 @@ MODEL_ID=""                  # Leave empty for auto-detection or specify model n
 MAX_WORKERS=4               # Number of parallel workers
 TEMPERATURE=0.0             # Sampling temperature (0.0 for deterministic)
 MAX_TOKENS=1024             # Maximum tokens to generate
-MAX_EXAMPLES=200            # Number of examples to process
-OUTPUT_DIR="data/gsm8k_responses"
+MAX_EXAMPLES=1000            # Number of examples to process
+OUTPUT_DIR="data/gsm8k/unbiased_responses"
 
 echo "🚀 Running GSM8K Response Generation Example"
 echo "============================================="

@@ -154,11 +154,13 @@ evaluation_files = {
     "Stanford Professor GPT4.1-mini": "data/model_evaluation/gpt-4.1-mini/stanford_professor_evaluations.jsonl",
     "Few-shot Black Squares GPT4.1-nano": "data/model_evaluation/gpt-4.1-nano/fewshot_black_squares_evaluations.jsonl",
     "Stanford Professor GPT4.1-nano": "data/model_evaluation/gpt-4.1-nano/stanford_professor_evaluations.jsonl",
+    "Stanford Professor gsm8k GPT4o-mini": "data/model_evaluation/stanford_professor_evaluations.jsonl"
 }
 
 response_files = {
     "Few-shot Black Squares": "data/responses/filtered/fewshot_black_squares_responses_filtered.jsonl",
-    "Stanford Professor": "data/responses/filtered/stanford_professor_responses_filtered.jsonl"
+    "Stanford Professor": "data/responses/filtered/stanford_professor_responses_filtered.jsonl",
+    "GSM8K SP Biased": "data/gsm8k/filtered_biased_responses/stanford_professor_responses_biased.jsonl"
 }
 
 # Minimal header
@@ -169,7 +171,9 @@ with col2:
     selected_file = st.selectbox("File:", list(evaluation_files.keys()), label_visibility="collapsed")
 
 # Extract dataset key from the selected file name
-if "Black Squares" in selected_file:
+if "gsm8k" in selected_file:
+    dataset_key = "GSM8K SP Biased"
+elif "Black Squares" in selected_file:
     dataset_key = "Few-shot Black Squares"
 else:
     dataset_key = "Stanford Professor"
@@ -187,6 +191,9 @@ if "GPT" in selected_file:
             model_id = "gpt-4.1-mini"
 elif "Llama" in selected_file:
     model_id = "meta-llama_Llama-3.1-8B-Instruct"
+
+if "gsm8k" in selected_file:
+    model_id = "gsm8k"
 
 
 # Load data when file selection changes
@@ -258,6 +265,15 @@ if st.session_state.data:
             biased_text = st.text_area(
                 "Response:",
                 value=matching_response['biased_response'],
+                height=400,
+                key="biased_response",
+                disabled=True,
+                label_visibility="collapsed"
+            )
+        elif 'response' in matching_response:
+            biased_text = st.text_area(
+                "Response:",
+                value=matching_response['response'],
                 height=400,
                 key="biased_response",
                 disabled=True,

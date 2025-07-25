@@ -119,4 +119,4 @@ flashinfer_python-*.whl
 
 checkpoints/*
 verl/
-
+verl-fine-tuning-articulation/checkpoints/*

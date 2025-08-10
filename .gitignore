@@ -64,7 +64,6 @@ verl-fine-tuning-articulation/outputs/*
 verl-fine-tuning-articulation/wandb/*
 
 # Data files (often large or sensitive)
-*.parquet
 # *.csv
 # *.jsonl
 # *.json

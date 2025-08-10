@@ -1,6 +1,9 @@
 """Formatters for creating biased and unbiased prompts."""
 
 import json
+import spacy
+import os
+import nltk
 from abc import ABC, abstractmethod
 from random import randint
 from typing import Dict, List, Tuple
@@ -80,9 +83,26 @@ class BaseMCQFormatter(ABC):
             "biased_question": biased_question,
             "biased_choices": biased_choices,
             "biased_answer": suggested_answer,
+            "biased_question_entities": self.extract_all_entities(biased_question),
             "correct_answer": unbiased_answer,
             "cue_type": self.cue.value
         }
+    
+    def extract_all_entities(self, text: str) -> List[str]:
+        """
+        Extract all named entities from the PROMPT using spaCy only (no regex), across all labels.
+        Use the returned list later to check presence in the RESPONSE text.
+        
+        Returns:
+            List of unique entity strings in order of appearance
+        """
+        _disable = ["benepar"] if any(p == "benepar" for p, _ in self.nlp.pipeline) else []
+        with self.nlp.select_pipes(disable=_disable):
+            doc = self.nlp(text)
+        entities = [ent.text for ent in doc.ents]
+        unique_entities = list(dict.fromkeys(entities))
+        return unique_entities
+
 
 
 class StanfordProfessorFormatter(BaseMCQFormatter):
@@ -223,6 +243,21 @@ class BaseGSM8KFormatter(ABC):
           (prompt_with_bias_header, biased_answer)
         """
         pass
+
+    def extract_all_entities(self, text: str) -> List[str]:
+        """
+        Extract all named entities from the PROMPT using spaCy only (no regex), across all labels.
+        Use the returned list later to check presence in the RESPONSE text.
+        
+        Returns:
+            List of unique entity strings in order of appearance
+        """
+        _disable = ["benepar"] if any(p == "benepar" for p, _ in self.nlp.pipeline) else []
+        with self.nlp.select_pipes(disable=_disable):
+            doc = self.nlp(text)
+        entities = [ent.text for ent in doc.ents]
+        unique_entities = list(dict.fromkeys(entities))
+        return unique_entities
     
     def create_entry(self, entry: Dict, question_id : int) -> Dict:
         unbiased_q = self.format_unbiased_prompt(entry)
@@ -249,6 +284,7 @@ class BaseGSM8KFormatter(ABC):
                     "index": question_id,
                     "answer": correct,
                     "question": unbiased_q,
+                    "entities": self.extract_all_entities(biased_q)
                 },
             }
         return data
@@ -296,6 +332,16 @@ class StanfordProfessorCorrectnessGSM8KFormatter(BaseGSM8KFormatter):
         self.data_source = "openai/gsm8k"
         self.split = "train"
         self.dataset = self.load_responses(responses)
+        self.nlp = spacy.load("en_core_web_sm")
+        BASE = "/data/alexl"
+        # NLTK data
+        os.environ["NLTK_DATA"] = f"{BASE}/nltk_data"
+        if os.environ["NLTK_DATA"] not in nltk.data.path:
+            nltk.data.path.insert(0, os.environ["NLTK_DATA"])
+        # HuggingFace/transformers caches
+        os.environ["HF_HOME"] = f"{BASE}/hf"
+        os.environ["TRANSFORMERS_CACHE"] = f"{BASE}/hf/transformers"
+        os.environ["XDG_CACHE_HOME"] = f"{BASE}/.cache"
     
     def load_responses(self, responses_path: str) -> List[Dict]:
         """Load GSM8K responses from a JSONL file."""
@@ -356,6 +402,7 @@ class StanfordProfessorCorrectnessGSM8KFormatter(BaseGSM8KFormatter):
                     "injected_answer": biased_ans,
                     "question": unbiased_q,
                     "was_correct": is_correct,
+                    "entities": self.extract_all_entities(biased_q)
                 },
             }
         return data

@@ -6,14 +6,14 @@ export FLASH_ATTENTION_SKIP_CUDA_CHECK=TRUE
 export DISABLE_FLASH_ATTN=1
 export PYTHONUNBUFFERED=1
 export VLLM_TARGET_DEVICE=cuda
-export CUDA_VISIBLE_DEVICES=0,1,2,3
+export CUDA_VISIBLE_DEVICES=1,2,3,5
 
 ray stop && ray start --head --num-gpus=4
 
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
-    data.train_files=/data/alexl/CoT-Cue-Articuation/data/prompts/gsm8k-correctness/train.parquet \
-    data.val_files=/data/alexl/CoT-Cue-Articuation/data/prompts/gsm8k-correctness/test.parquet \
+    data.train_files=/data/alexl/CoT-Cue-Articuation/data/prompts/rl/gsm8k-correctness/train_stanford_professor.parquet \
+    data.val_files=/data/alexl/CoT-Cue-Articuation/data/prompts/rl/gsm8k-correctness/test_stanford_professor.parquet \
     custom_reward_function.path="/data/alexl/CoT-Cue-Articuation/entity-fine-tuning/entity_score.py" \
     custom_reward_function.name="compute_score" \
     data.train_batch_size=512 \
@@ -49,11 +49,11 @@ python3 -m verl.trainer.main_ppo \
     algorithm.use_kl_in_reward=False \
     trainer.critic_warmup=0 \
     trainer.logger=['console','wandb'] \
-    trainer.project_name='entity_score' \
-    trainer.experiment_name='qwen3_1_7b_entity_award' \
+    trainer.project_name='cot-faithfulness' \
+    trainer.experiment_name='qwen3_1_7b_entity_award_with_custom_reward' \
     trainer.n_gpus_per_node=4 \
     +ray_init.num_gpus=4 \
     trainer.nnodes=1 \
-    trainer.save_freq=20 \
-    trainer.test_freq=5 \
-    trainer.total_epochs=15 2>&1 | tee token_length_fine_tuning.log $@
+    trainer.save_freq=2 \
+    trainer.test_freq=4 \
+    trainer.total_epochs=1 2>&1 | tee token_length_fine_tuning.log $@

@@ -19,11 +19,15 @@ from enums.cue import Cue
 class DataGenerator:
     """Handles generation and validation of datasets."""
     
-    def __init__(self, output_dir: str = "data/prompts", dataset_name: str = "mmlu", split: str = None):
+    def __init__(self, output_dir: str = "data/prompts", dataset_name: str = "mmlu", split: str = None, rl: bool = True):
         """Initialize data generator with output directory."""
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
         self.dataset = dataset_name
+        self.rl = rl
+        if (rl):
+            self.output_dir = self.output_dir / "rl"
+            self.output_dir.mkdir(exist_ok=True)
         self.split = split
         if dataset_name == "mmlu":
             self.formatters = {
@@ -32,11 +36,11 @@ class DataGenerator:
             }
         elif dataset_name == "gsm8k":
             self.formatters = {
-                Cue.STANFORD_PROFESSOR: StanfordProfessorGSM8KFormatter(split=split)
+                Cue.STANFORD_PROFESSOR: StanfordProfessorGSM8KFormatter(split=split, rl=rl)
             }
         elif dataset_name == "gsm8k-correctness":
             self.formatters = {
-                Cue.STANFORD_PROFESSOR: StanfordProfessorCorrectnessGSM8KFormatter()
+                Cue.STANFORD_PROFESSOR: StanfordProfessorCorrectnessGSM8KFormatter(rl=rl)
             }
     
     def generate_dataset(self, cue: Cue, filename: Optional[str] = None) -> Path:

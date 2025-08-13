@@ -50,7 +50,8 @@ def main():
     if args.cue:
         # Generate for specific cue
         cue = Cue(args.cue)
-        input_file = Path("data") / f"{cue.value}.jsonl"
+        # input_file = Path("data") / f"{cue.value}.jsonl"
+        input_file = Path("/data/alexl/CoT-Cue-Articuation/data/prompts/gsm8k-correctness/stanford_professor.jsonl")
         
         if not input_file.exists():
             print(f"❌ Dataset not found: {input_file}")

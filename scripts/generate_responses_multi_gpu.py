@@ -174,7 +174,7 @@ class FastResponseGenerator:
         # Display GPU info in simple format
         for gpu in self.gpus:
             status = "🟢" if gpu.is_healthy else "🔴"
-            model_name = gpu.model_id[:30] + "..." if gpu.model_id and len(gpu.model_id) > 30 else gpu.model_id or "Unknown"
+            model_name = gpu.model_id[:100] + "..." if gpu.model_id and len(gpu.model_id) > 100 else gpu.model_id or "Unknown"
             self.console.print(f"  {status} Port {gpu.port}: {model_name}")
     
     def _select_best_gpu(self) -> Optional[GPUInstance]:
@@ -198,7 +198,7 @@ class FastResponseGenerator:
                     "model": gpu.model_id,
                     "messages": [{"role": "user", "content": prompt}],
                     "temperature": 0.0,
-                    "max_tokens": 1024
+                    "max_tokens": 10240
                 }
                 
                 async with session.post(f"{gpu.base_url}/chat/completions", json=payload) as response:
@@ -406,7 +406,7 @@ async def main():
                        help="Number of concurrent workers per GPU (default: 4)")
     parser.add_argument("--cue", type=str, choices=[cue.value for cue in Cue],
                        help="Generate responses for specific cue only")
-    parser.add_argument("--output-dir", type=str, default="data/responses/raw",
+    parser.add_argument("--output-dir", type=str, default="data/responses/base_model",
                        help="Output directory for responses")
     
     args = parser.parse_args()
@@ -429,8 +429,8 @@ async def main():
         if args.cue:
             # Generate for specific cue
             cue = Cue(args.cue)
-            input_file = Path("data/prompts") / f"{cue.value}.jsonl"
-            
+            # input_file = Path("data/prompts") / f"{cue.value}.jsonl"
+            input_file = Path("/data/alexl/CoT-Cue-Articuation/data/prompts/gsm8k-correctness/stanford_professor.jsonl")
             if not input_file.exists():
                 console.print(f"❌ Dataset not found: {input_file}")
                 console.print("Run 'python scripts/generate_data.py' first")

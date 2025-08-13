@@ -20,14 +20,14 @@ def save_parquet(df, file_path):
     pq.write_table(table, file_path)
 
 if __name__ == "__main__":
-    file_path = "/data/alexl/CoT-Cue-Articuation/data/prompts/gsm8k-correctness/stanford_professor.jsonl"
+    file_path = "/data/alexl/CoT-Cue-Articuation/data/prompts/rl/gsm8k-correctness/train_stanford_professor.jsonl"
     df = load_jsonl(file_path)
     
     train_df, test_df = split_train_test(df)
     
     output_dir = os.path.dirname(file_path)
-    train_file = os.path.join(output_dir, 'train.parquet')
-    test_file = os.path.join(output_dir, 'test.parquet')
+    train_file = os.path.join(output_dir, file_path.split("/")[-1].replace("train_stanford_professor.jsonl", "train_stanford_professor.parquet"))
+    test_file = os.path.join(output_dir, file_path.split("/")[-1].replace("train_stanford_professor.jsonl", "validation_stanford_professor.parquet"))
     
     save_parquet(train_df, train_file)
     save_parquet(test_df, test_file)

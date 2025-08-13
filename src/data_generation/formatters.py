@@ -207,9 +207,10 @@ Label: (A)
 class BaseGSM8KFormatter(ABC):
     """Base class for GSM8K (free-response) prompt formatters."""
     
-    def __init__(self, cue: Cue, split: str = "train"):
+    def __init__(self, cue: Cue, split: str = "train", rl: bool = True):
         self.cue = cue
         self.split = split
+        self.rl = rl
         # GSM8K comes as a jsonlines of {"question":..., "answer": "..."}
         print(split)
         self.dataset = load_dataset("openai/gsm8k", "main")[split]
@@ -301,8 +302,8 @@ class BaseGSM8KFormatter(ABC):
 class StanfordProfessorGSM8KFormatter(BaseGSM8KFormatter):
     """Injects an authority bias by seeding a wrong numeric answer."""
     
-    def __init__(self, split: str = "train"):
-        super().__init__(Cue.STANFORD_PROFESSOR, split)
+    def __init__(self, split: str = "train", rl : bool = True):
+        super().__init__(Cue.STANFORD_PROFESSOR, split, rl)
         self.data_source = "openai/gsm8k"
     
     def format_biased_prompt(self, entry: Dict) -> Tuple[str, str]:
@@ -328,11 +329,17 @@ class StanfordProfessorGSM8KFormatter(BaseGSM8KFormatter):
 class StanfordProfessorCorrectnessGSM8KFormatter(BaseGSM8KFormatter):
     """Injects an authority bias by seeding a wrong numeric answer."""
     
-    def __init__(self, responses : str = "data/gsm8k/unbiased_responses/gsm8k_test_responses.jsonl"):
+    def __init__(self, responses : str = "data/gsm8k/unbiased_responses/gsm8k_test_responses.jsonl", rl : bool = True):
         self.data_source = "openai/gsm8k"
-        self.split = "train"
-        self.dataset = self.load_responses(responses)
+        self.split = "test"
+        self.rl = rl
+        if self.rl:
+            self.dataset = load_dataset("openai/gsm8k", "main")[self.split]
+        else:
+            self.dataset = self.load_responses(responses)
+        
         self.nlp = spacy.load("en_core_web_sm")
+        
         BASE = "/data/alexl"
         # NLTK data
         os.environ["NLTK_DATA"] = f"{BASE}/nltk_data"
@@ -379,19 +386,14 @@ class StanfordProfessorCorrectnessGSM8KFormatter(BaseGSM8KFormatter):
     
     def create_entry(self, entry: Dict, question_id : int) -> Dict:
         unbiased_q = self.format_unbiased_prompt(entry)
-
-        correct = int(entry["ground_truth"])
-        is_correct = entry.get("is_correct")
-        print(correct)
-        
-        biased_q, biased_ans = self.format_biased_prompt(entry)
-        
-        data = {
+        if self.rl:
+            correct = self._extract_numeric_answer(entry["answer"])
+            rl_data = {
                 "data_source": self.data_source,
                 "prompt": [
                     {
                         "role": "user",
-                        "content": biased_q,
+                        "content": unbiased_q,
                     }
                 ],
                 "ability": "math",
@@ -399,13 +401,33 @@ class StanfordProfessorCorrectnessGSM8KFormatter(BaseGSM8KFormatter):
                 "extra_info": {
                     "index": question_id,
                     "answer": correct,
-                    "injected_answer": biased_ans,
-                    "question": unbiased_q,
-                    "was_correct": is_correct,
-                    "entities": self.extract_all_entities(biased_q)
+                    "entities": self.extract_all_entities(unbiased_q)
                 },
             }
-        return data
+            return rl_data
+        
+        correct = int(entry["ground_truth"])
+        is_correct = entry.get("is_correct")
+        print(correct)
+        
+        biased_q, biased_ans = self.format_biased_prompt(entry)
+        
+        
+        
+        non_rl_data = {
+            "unbiased_question": unbiased_q,
+            "unbiased_answer": correct,
+            "biased_question": biased_q,
+            "biased_answer": biased_ans,
+            "biased_question_entities": self.extract_all_entities(biased_q),
+            "correct_answer": correct,
+            "cue_type": Cue.STANFORD_PROFESSOR.value,
+        }
+        
+        if (self.rl):
+            return rl_data
+        
+        return non_rl_data
 
 if __name__ == "__main__":
     # Example usage:

@@ -21,12 +21,13 @@ def main():
     print("🚀 CoT Cue Articulation - Data Generation")
     print("=" * 50)
     dataset = input("What dataset do you want to generate? (mmlu/gsm8k/gsm8k-correctness) [default: mmlu]: ").strip() or "mmlu"
+    rl = bool(input("Generate for RL setting? (y/n) [default: y]: ").strip().lower() in ["y", "yes", ""])
     if dataset == "gsm8k":
         split = input("What split do you want to generate? (train/test) [default: train]: ").strip() or "train"
         generator = DataGenerator(dataset_name=dataset, split=split)
     # Initialize data generator
     else:
-        generator = DataGenerator(dataset_name=dataset)
+        generator = DataGenerator(dataset_name=dataset, rl=rl)
     
     # Generate all datasets
     generated_files = generator.generate_all_datasets()
